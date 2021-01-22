@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  #container {
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;
+    margin-top: 40px
+  }
+
+  body {
+    background: #060c3c;
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script>
+    $(function () {
+      var myChart = echarts.init(document.getElementById('container'));
+      var data = [
+        { name: '兴隆镇', value: 12 },
+        { name: '临南镇', value: 12 },
+        { name: '临盘街道', value: 12 },
+        { name: '恒源街道', value: 12 },
+        { name: '邢侗街道', value: 12 },
+        { name: '孟寺镇', value: 12 },
+        { name: '临邑镇', value: 12 },
+        { name: '林子镇', value: 12 },
+        { name: '宿安乡', value: 12 },
+        { name: '理合务镇', value: 12 },
+        { name: '翟家镇', value: 12 },
+        { name: '德平镇', value: 12 },
+      ]
+      $.get('/json/临邑.json', function (geoJson) {
+        echarts.registerMap('临邑县', geoJson, {});
+
+        //引入散点坐标数据
+
+        var geoCoordMap = {
+          '兴隆镇': [116.775086, 37.082323],
+          '临南镇': [116.890084, 37.079922],
+          '临盘街道': [116.784965, 37.204227],
+          '恒源街道': [116.826777, 37.185342],
+          '邢侗街道': [116.883976, 37.191694],
+          '孟寺镇': [116.994484, 37.183778],
+          '临邑镇': [116.900532, 37.261331],
+          '林子镇': [116.874443, 37.32638],
+          '宿安乡': [116.966703, 37.279753],
+          '理合务镇': [116.970609, 37.369577],
+          '翟家镇': [116.919349, 37.394015],
+          '德平镇': [116.968057, 37.471855],
+        }
+        //将数据显示和坐标对应上
+        var convertData = function (data) {
+          var res = [];
+          for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+              res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+              });
+            }
+          }
+          return res;
+        };
+
+        var option = {
+          //backgroundColor:'#000b3a',//地图背景颜色
+          tooltip: {
+            trigger: 'item',
+          },
+          geo: {
+            map: '临邑县',
+            roam: true, //开启鼠标缩放和漫游
+            zoom: 1, //地图缩放级别
+            layoutCenter: ["50%", "50%"], //地图位置
+            silent: false,//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。
+            label: {
+              normal: {
+                show: true,
+                textStyle: {
+                  fontSize: 12,
+                  fontWeight: 'normal',
+                  color: '#fff'
+                }
+              },
+              emphasis: {
+                show: true
+              }
+            },
+            itemStyle: {
+              normal: {
+                borderColor: '#1cccff',//地图边界线的颜色
+                areaColor: '#042c83',//地图整体区域的颜色
+                borderWidth: 1,
+                shadowColor: '#276fce',
+                shadowBlur: 15,
+                shadowOffsetX: 0,
+                shadowOffsetY: 15,
+              },
+              emphasis: {
+                areaColor: '#276fce'//鼠标滑过的颜色
+              }
+            },
+          },
+
+          //（1）series 的类型为散点图 scatter
+
+          series: [
+            {
+              name: '坐标',            // series名称
+              type: 'scatter',          // series图表类型
+              coordinateSystem: 'geo',  // series坐标系类型
+              symbol: 'image://img/dw.svg',
+              data: convertData(data),  // series数据内容
+              label: {
+                normal: {
+                  formatter: '{b}',
+                  position: 'right',
+                  show: false
+                },
+                emphasis: {
+                  show: false
+                }
+              },
+              tooltip: {
+                show: false
+              },
+              symbolSize: 20,//散点大小设置
+              type: 'effectScatter',
+              itemStyle: {
+                normal: {
+                  //color: 'purple',
+                }
+              },
+            }
+          ]
+        };
+
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+          alert(params.name)
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

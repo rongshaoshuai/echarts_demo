@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>济源市地图</title>
+  <style>
+    #echarts3 {
+      width: 1000px;
+      height: 800px;
+      margin: 0 auto;
+      margin-top: 40px
+    }
+
+    body {
+      background: #060c3c;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div id="echarts3"></div>
+</body>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script>
+
+  function echarts3() {
+    var data = [
+      { name: '沁园街道', value: 9 },
+      { name: '济水街道', value: 12 },
+      { name: '北海街道', value: 12 },
+      { name: '天坛街道', value: 12 },
+      { name: '玉泉街道', value: 14 },
+      { name: '五龙口镇', value: 15 },
+      { name: '克井镇', value: 16 },
+      { name: '轵城镇', value: 18 },
+      { name: '承留镇', value: 18 },
+      { name: '承留镇1', value: 17 },
+      { name: '承留镇2', value: 15 },
+      { name: '邵原镇', value: 19 },
+      { name: '坡头镇', value: 21 },
+      { name: '梨林镇', value: 21 },
+      { name: '大峪镇', value: 21 },
+      { name: '思礼镇', value: 22 },
+      { name: '下冶镇', value: 23 },
+      { name: '王屋镇', value: 24 },
+    ]
+    var geoCoordMap = {
+      沁园街道: [112.578, 35.088],
+      济水街道: [112.595, 35.098],
+      北海街道: [112.582, 35.109],
+      天坛街道: [112.572, 35.101],
+      玉泉街道: [112.622, 35.098],
+      五龙口镇: [112.695, 35.141],
+      克井镇: [112.549, 35.166],
+      轵城镇: [112.607, 35.052],
+      承留镇: [112.469, 35.076],
+      承留镇1: [112.384, 35.1241],
+      承留镇2: [112.467, 35.0123],
+      邵原镇: [112.133, 35.17],
+      坡头镇: [112.507, 34.96],
+      梨林镇: [112.72, 35.09],
+      大峪镇: [112.32, 35.035],
+      思礼镇: [112.5, 35.11],
+      下冶镇: [112.18, 35.09],
+      王屋镇: [112.29, 35.16],
+    }
+    var myChart = echarts.init(document.getElementById('echarts3'))
+    var convertData = function (data) {
+      var res = []
+      for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name]
+        if (geoCoord) {
+          res.push({
+            name: data[i].name,
+            value: geoCoord.concat(data[i].value),
+          })
+        }
+      }
+      return res
+    }
+    var myData = convertData(data)
+    console.log(myData)
+
+    myChart.showLoading()
+
+    $.get('json/419001.json', function (geoJson) {
+      myChart.hideLoading()
+      echarts.registerMap('419001', geoJson)
+      option = {
+        tooltip: {
+          trigger: 'item',
+          // formatter: '{b}<br/>{c} (p / km2)',
+        },
+        geo: {
+          show: true,
+          map: '419001',
+          roam: true,
+          scaleLimit: { min: 0.5, max: 3 },
+          label: {
+            show: true,
+            color: '#d8dbe9',
+          },
+          itemStyle: {
+            areaColor: '#2056cb',
+            borderColor: '#2a85e9',
+          },
+          emphasis: {
+            itemStyle: {
+              areaColor: '#4d8ffe',
+            },
+          },
+        },
+        series: [
+          // 散点配置
+          {
+            name: '济源市产业集聚区',
+            type: 'effectScatter',
+            rippleEffect: {
+              burshType: 'stroke',
+            },
+            symbolSize: 10,
+            coordinateSystem: 'geo',
+            data: myData,
+            itemStyle: {
+              color: '#ffb05a',
+            },
+          },
+        ],
+      }
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+      myChart.on('click', function (params) {
+        console.log(params.name)
+        window.location.href =
+          'http://127.0.0.1:5501/area.html?name=' + params.name
+      })
+    })
+  }
+  echarts3()
+</script>
+
+</html>

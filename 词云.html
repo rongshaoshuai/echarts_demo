@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>词云</title>
+  <style>
+    #main {
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+  </div>
+  <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+  <!-- 注意词云引入的echars.js -->
+  <script src="js/echart3.js"></script>
+  <script src="js/echarts-wordcloud.js"></script>
+  <script>
+    var myChart = echarts3.init(document.getElementById('main'));
+
+    myChart.setOption({
+      title: {
+        text: 'echarts3云图展示'
+      },
+      tooltip: {},
+      series: [{
+        type: 'wordCloud',  //类型为字符云
+        shape: 'smooth',  //平滑
+        gridSize: 2, //网格尺寸
+        size: ['80%', '80%'],
+        //sizeRange : [ 50, 100 ],  
+        rotationRange: [46, 80], //旋转范围
+        textStyle: {
+          normal: {
+            fontFamily: 'sans-serif',
+            color: function () {
+              return 'rgb('
+                + [Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160)]
+                  .join(',') + ')';
+            }
+          },
+          emphasis: {
+            shadowBlur: 5,  //阴影距离
+            shadowColor: '#333'  //阴影颜色
+          }
+        },
+        data: [
+          { "name": "云图", "value": "200" },
+          { "name": "是个啥", "value": "156" },
+          { "name": "他啥都不是", "value": "122" },
+          { "name": "就是他呆子", "value": "119" },
+          { "name": "傻子和疯子", "value": "108" },
+          { "name": "营养快线", "value": "101" },
+          { "name": "哈哈哈到家", "value": "96" },
+          { "name": "瑞士军刀", "value": "84" },
+          { "name": "DW情侣对表", "value": "58" },
+          { "name": "清风抽纸", "value": "55" },
+          { "name": "OPPO R9S", "value": "46" },
+          { "name": "这一刻更清晰", "value": "28" },
+          { "name": "呵呵旧宫style", "value": "27" },
+          { "name": "债券评级", "value": "26" }],
+      }]
+    });
+
+  </script>
+</body>
+
+</html>

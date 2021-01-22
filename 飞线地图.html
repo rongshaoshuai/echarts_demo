@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>飞线地图</title>
+  <!--设置是否为缩放模式 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <script src="json/china.js"></script>
+  <script src="js/chartMap.js"></script>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #061537;
+    }
+
+    #main8 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main8"></div>
+</body>
+
+<script type="text/javascript">
+  var myChart8 = echarts.init(document.getElementById('main8'));
+  myChart8.setOption(option8);
+</script>
+
+</html>

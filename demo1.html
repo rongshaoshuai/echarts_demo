@@ -1,0 +1,3102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件</title>
+  <style>
+    @font-face {
+      font-family: electronicFont;
+      src: url(./font/DS-DIGIT.TTF)
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #030620;
+    }
+
+    .box {
+      width: 25%;
+      height: 315px;
+      float: left;
+    }
+
+    .box_ {
+      overflow: hidden;
+    }
+
+    .show1 {
+      display: flex;
+      justify-content: space-between;
+      width: 422px;
+      height: 98px;
+      background: url('/img/img_01.png') no-repeat center;
+    }
+
+    .show1 .box1 {
+      margin-left: 120px;
+      padding-top: 16px;
+    }
+
+    .show1 .box1 .num1 {
+      color: #1cfeff;
+      font-size: 34px;
+      font-weight: 700;
+      text-shadow: 0 0 10px #14839f
+    }
+
+    .show1 .box1 .name1 {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    @-webkit-keyframes changeright {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      50% {
+        -webkit-transform: rotate(180deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes changeright {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      50% {
+        -webkit-transform: rotate(180deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    .show1 .box2 {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      color: #3efff4;
+      font-size: 18px;
+      margin-right: 35px;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .show1 .box2 img {
+      animation: changeright 6s linear infinite;
+    }
+
+    #echarts100 {
+      width: 108px;
+      height: 108px;
+    }
+
+    .box4>div {
+      height: 36px;
+      line-height: 36px;
+    }
+
+    #echarts101 {
+      width: 396px;
+      height: 28px;
+      border: 1px solid #889ef0;
+    }
+
+    .box4 {
+      color: #fff;
+      margin-left: 20px;
+    }
+
+    .box4 span {
+      color: #1cfeff;
+      font-size: 16px;
+      font-weight: 500;
+      text-shadow: 0 0 10px #14839f
+    }
+
+    .show2 {
+      display: flex;
+    }
+
+    .show3 {
+      position: relative;
+      width: 228px;
+      height: 103px;
+      background: url('/img/img_03.png') no-repeat center;
+      background-size: cover;
+    }
+
+    .show3 .num {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 42px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .show3 .name {
+      position: absolute;
+      top: 2px;
+      right: 32px;
+      font-size: 16px;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box_">
+    <div class="box" id="echarts1"></div>
+    <div class="box" id="echarts2"></div>
+    <div class="box" id="echarts3"></div>
+  </div>
+  <div class="box_">
+    <div class="box" id="echarts4"></div>
+    <div class="box" id="echarts5"></div>
+    <div class="box" id="echarts6"></div>
+    <div class="box" id="echarts7"></div>
+    <!-- <div class="box" id="echarts8"></div> -->
+  </div>
+  <div class="box_">
+    <div class="box" id="echarts9"></div>
+    <div class="box" id="echarts10"></div>
+    <div class="box">
+      <div class="show1">
+        <div class="box1">
+          <div class="num1">145</div>
+          <div class="name1">数据展示 (W)</div>
+        </div>
+        <div class="box2">
+          <img src="/img/img_02.png" alt="">
+          <div style="position: absolute;top:0; width: 60px;text-align: center;">34%</div>
+        </div>
+      </div>
+      <div class="show2">
+        <div class="box3">
+          <div id="echarts100"></div>
+        </div>
+        <div class="box4">
+          <div>数据展示</div>
+          <div id="echarts101"></div>
+          <div>
+            数据展示
+            <span>188</span>
+            数据展示
+            <span>188</span>
+          </div>
+        </div>
+      </div>
+      <div class="show3">
+        <div class="num">9400</div>
+        <div class="name">指标名称</div>
+      </div>
+    </div>
+  </div>
+  <div class="box_">
+    <div class="box" id="echarts11"></div>
+    <div class="box" id="echarts12"></div>
+    <div class="box" id="echarts13"></div>
+    <div class="box" id="echarts14"></div>
+  </div>
+  <div class="box_">
+    <div class="box" id="echarts15"></div>
+    <div class="box" id="echarts16"></div>
+    <div class="box" id="echarts17"></div>
+    <div class="box" id="echarts18"></div>
+    <div class="box" id="echarts19"></div>
+    <div class="box" id="echarts20"></div>
+  </div>
+</body>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-gl.min.js"></script>
+
+<script>
+  $(function () {
+    function echarts1() {
+      var myChart = echarts.init(document.getElementById('echarts1'))
+      var option = {
+        //图表的颜色
+        color: ['#22ffcc', '#2e47a8'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {
+          show: false,
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['2015年', '2016年', '2017年', '2018年', '2019年', '2020年', '2021年'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {//坐标轴轴线
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#306269',
+                width: 2,
+              },
+            },
+            axisTick: {//坐标轴刻度
+              show: false,
+            },
+            axisLabel: {//刻度标签
+              color: '#fff',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            name: '单位',
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#fff' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#0a132b',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '曲线名称1',
+            type: 'line',
+            areaStyle: { color: '#0a494d' },
+            smooth: true,
+            symbol: 'none',
+            data: [175, 65, 300, 120, 180, 100, 120],
+
+          },
+          {
+            name: '曲线名称2',
+            type: 'line',
+            areaStyle: { color: '#192163' },
+            smooth: true,
+            symbol: 'none',
+            data: [100, 80, 110, 180, 80, 140, 105],
+          },
+        ],
+      }
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts2() {
+      var myChart = echarts.init(document.getElementById('echarts2'))
+
+      var option = {
+        //图表的颜色
+        color: ['#f0697f'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {
+          show: false,
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['09/12', '09/13', '09/14', '09/15', '09/16', '09/17', '09/18'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            boundaryGap: false,
+            axisLine: {//坐标轴轴线
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#3d456c',
+                width: 1,
+              },
+            },
+            axisTick: {//坐标轴刻度
+              show: true, alignWithLabel: true,
+            },
+            axisLabel: {//刻度标签
+              color: '#8c97bf',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: '#3d456c',
+                width: 1,
+              },
+            },
+            axisLabel: { color: '#8c97bf' },
+            axisTick: {
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#0a132b',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '曲线名称1',
+            type: 'line',
+            smooth: true,
+            symbolSize: '16',
+            symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjREOTI1N0JGNUJDMDExRUJBQzREQ0IwRTVBQTBGNTc0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjREOTI1N0MwNUJDMDExRUJBQzREQ0IwRTVBQTBGNTc0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NEQ5MjU3QkQ1QkMwMTFFQkFDNERDQjBFNUFBMEY1NzQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NEQ5MjU3QkU1QkMwMTFFQkFDNERDQjBFNUFBMEY1NzQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6ChmbLAAACtklEQVR42sSXvW4TQRDHZ9drX2yQ+IhAIh2p7IqCAgsJCkQBFTEPwAtQUyNRUvMEPAAJNFAgCpBQokhINMgVdBEgRVCAncv5bpmxZqPxem/vbCJlpb9272P3t18zO6ustVAjKVgsVTZqasKUyFUEZut2wlRAlZD2nkNQUuE9qxDclEB9YEgyOVjO5cLrwNzITQRKjTc4N1xuiHc+OBeaiHdFaNpNBdSwmqLsOqFEYw7mpDmXHZuBm8CaSigBW54cXItGHfCQpQP7oJBrHhqxhCasNudd1H1UH3WJ6+2hdlAvUENU6s2IHOnRRlNsx/5IWwxaQXVQZ1CPUAObHqrJ8CsU+7+mrenVc2C666CSFjX0CvUURR/HrJRnYSLW3BJYrqsPPYU6i3oG1l5N336E9M0HsOOD2R3ZXoHkzg1Ibl/HB/UJXz1E/Ub9RR148DmwWzs50tOoxwgdjJ5vQbbzOeqNmteuQOfBBsFp2p+g/qBGAu72gtWB9ZXT3UPdS99tV0Ip0T80K5g2uG5LWIF0QKADpiTNaGCzTKev39d20tOlwDpU1zO/IBg8L+Xg/Xz4DexoXP90wPWnOrzzJXTGxHTEZdK3tfznPiyauM5aiT2Xgo8rZbGPOnK80bbfa1xcXZioL5yn7IfwVlGwFaeK873bje5lUJ12bSjZtOmtU3HXcxozndCB81Q6/C3VbBbJ3Zu1weRIqA4WN0U7uceYA8tjjTzNF9TL5FZ/6hyqEv0z9V5Yh+tKVynhcKIu88QOCd92TeRY7HnHIjX2nTfSJk9vyqN0I83EWh+FQxIMAc+1bCDglAV2NshAQB7SRcCuC9FwndAn83Z04Qd9piT+LbyyAy8b7Fk/7jaR4NtV0FzWYqSLhrdzwb4qucIcZ0AfvE2oyN3pf64wdtkrDCxyD1rmv38CDACkZXJAKaUobwAAAABJRU5ErkJggg==',
+            areaStyle: {
+              color: '#030620',
+              shadowColor: 'rgba(85,34,55,.8)',
+              shadowOffsetX: 0,
+              shadowOffsetY: -12,
+              shadowBlur: 0
+            },
+            data: [500, 1100, 1000, 1700, 1500, 1600, 1200],
+            markPoint: {
+              symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAAbCAYAAADFyymQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjFCMkMzRDYxNUJCRjExRUJBNEMwOUY0Q0Q3MTE2MzM5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjFCMkMzRDYyNUJCRjExRUJBNEMwOUY0Q0Q3MTE2MzM5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MUIyQzNENUY1QkJGMTFFQkE0QzA5RjRDRDcxMTYzMzkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MUIyQzNENjA1QkJGMTFFQkE0QzA5RjRDRDcxMTYzMzkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5awuICAAAA0klEQVR42mJ8bBTnycDAMBeIJRlGNngOxMlMo4EBB6AwmMs0GhiogcI0GgaoYDRARgNkNEBGA2Q0QEYDZDRARgNkNEBGA2Q0QEYDZDRARgNkNEBGRIA8Hw0GOHgBCpAUEGM0LBieMkDHVLcxQIYRGemMi4hw5C4g5qOTe2RAYTGQZUg/EE/HIz8DiL2B+PNIKlRzgXgHmthfaOrJBOI/I62WAXk+AogvQ/lfgDgQmnpGbLX7EYi9gPgsENsC8eaBdAzLICnhnwCxKRD/H2iHAAQYAI+vHQY4ZA+iAAAAAElFTkSuQmCC',
+              symbolSize: [68, 27],
+              symbolOffset: [0, '-80%'],
+              data: [{
+                name: '最大值',
+                type: 'max'
+              }],
+              label: {
+                formatter: '{c}万元',
+                offset: [0, -2]
+              }
+            }
+          }
+        ],
+      }
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts3() {
+      var myChart = echarts.init(document.getElementById('echarts3'))
+
+      var option = {
+        //图表的颜色
+        color: ['#228ffe', '#030620'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {
+          show: false,
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['0天', '7天', '14天', '21天', '28天'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            boundaryGap: false,
+            axisLine: {//坐标轴轴线
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#111733',
+                width: 1,
+              },
+            },
+            axisTick: {//坐标轴刻度
+              show: false,
+            },
+            axisLabel: {//刻度标签
+              color: '#5c719b',
+            }, splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#0a132b',
+              },
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: '#111733',
+                width: 1,
+              },
+            },
+            axisLabel: { color: '#5c719b' },
+            axisTick: {
+              show: false
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#0a132b',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '曲线名称1',
+            type: 'line',
+            smooth: true,
+            symbolSize: '10',
+            symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjI5NjkzRTczNUJDMDExRUI4NkFEQzJBMzBDRTlDNkVFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjI5NjkzRTc0NUJDMDExRUI4NkFEQzJBMzBDRTlDNkVFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Mjk2OTNFNzE1QkMwMTFFQjg2QURDMkEzMENFOUM2RUUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Mjk2OTNFNzI1QkMwMTFFQjg2QURDMkEzMENFOUM2RUUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz60YoGyAAAA+ElEQVR42mL8//8/AxQwA7EtEGsC8R8gPgPE52GSjFCF4kDcD8RqDKjgMBBXAvEPkEKQSYuAWP3oIwbufff/83OwMPwL12F8J8fP8Asovg2I60AK7YGM3uOPGbjTNv1X/fYb7AQGCR6Gn0dTGK8AmSAr/ZmAhDZIYtfd//wwRSDw4gsD+9prDIIg54HczQR1OAMbM8N/NPcxMDHCxf4xwXwWqs34Towb7CYw0BJl+BqoyfABatBFmK8nA7Hlq68MLLvuMPCzMoM8w/Aeqgfk0UkwhdxAXAvELkg2/wXipUA8BWQ1I1KAg4AiyFYg/g3EF4D4FUwCIMAAwtZTQKUfa3cAAAAASUVORK5CYII=',
+            lineStyle: {
+              width: 4
+            },
+            areaStyle: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                  offset: 0, color: '#061437' // 0% 处的颜色
+                }, {
+                  offset: 0.8, color: '#030823' // 100% 处的颜色
+                }],
+                global: false // 缺省为 false
+              }
+            },
+            markPoint: {
+              data: [{
+                name: '最大值',
+                type: 'max'
+              }],
+              itemStyle: {
+                color: 'transparent'
+              },
+              label: {
+                offset: [0, 12]
+              }
+            },
+            data: [3800, 4290, 3700, 3900, 4050],
+          }
+        ],
+      }
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts4() {
+      var myChart = echarts.init(document.getElementById('echarts4'))
+      var option = {
+        //图表的颜色
+        color: ['#4c61ff', '#2fc7d2', '#26328b', '#1e7d8a'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['2018年', '2019年', '2020年', '2021年'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#0c435a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              color: '#dcdcdc',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: '#0c435a',
+                width: 1,
+              },
+            },
+            axisLabel: { color: '#dcdcdc' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#0c435a',
+              },
+            },
+          }
+        ],
+        series: [
+          {
+            name: '线1',
+            data: [590, 590, 650, 600],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            lineStyle: {
+              type: 'dashed'
+            },
+            symbol: 'none',
+          },
+          {
+            name: '线2',
+            data: [300, 400, 580, 580],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            lineStyle: {
+              type: 'dashed'
+            },
+            symbol: 'none',
+          },
+          {
+            name: '柱1',
+            type: 'bar',
+            barWidth: 20,
+            data: [560, 620, 420, 570],
+            animationDuration: 3000,
+            animationDelay: 200,
+            itemStyle: {
+              borderColor: '#4c61ff',
+              borderWidth: 1,
+              // 柱子颜色渐变
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#0a1a43' },
+                { offset: 0.5, color: '#2a3d96' },
+                { offset: 1, color: '#5266fe' },
+              ]),
+            }
+          },
+          {
+            name: '柱2',
+            type: 'bar',
+            barWidth: 20,
+            data: [390, 390, 570, 570],
+            animationDuration: 3000,
+            animationDelay: 200,
+            itemStyle: {
+              borderColor: '#32ccd6',
+              borderWidth: 1,
+              // 柱子颜色渐变
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#0a1c41' },
+                { offset: 0.5, color: '#238d9f' },
+                { offset: 1, color: '#32ccd6' },
+              ]),
+            }
+          },
+
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts5() {
+      var myChart = echarts.init(document.getElementById('echarts5'))
+      var option = {
+        //图表的颜色
+        color: ['#00d8ff', '#dddedf'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['2015', '2016', '2017', '2018'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#35384d',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              color: '#dddedf',
+            }, splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#0c0f27',
+              },
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: '#35384d',
+                width: 1,
+              },
+            },
+            axisLabel: { color: '#dcdcdc' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#0c0f27',
+              },
+            },
+          }
+        ],
+        series: [
+          {
+            name: '线1',
+            data: [540, 750, 850, 780],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            symbol: 'emptyCircle',
+            symbolSize: 8,
+            areaStyle: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                  offset: 0, color: '#022c48' // 0% 处的颜色
+                }, {
+                  offset: 0.8, color: '#030923' // 100% 处的颜色
+                }],
+                global: false // 缺省为 false
+              }
+            },
+          },
+          {
+            name: '柱1',
+            type: 'pictorialBar',
+            barWidth: 28,
+            data: [500, 620, 750, 700],
+            animationDuration: 3000,
+            animationDelay: 200,
+            itemStyle: {
+              opacity: 0.95,
+              // 柱子颜色渐变
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#0a1a43' },
+                { offset: 0.5, color: '#2a3d96' },
+                { offset: 1, color: '#5266fe' },
+              ]),
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1,
+              },
+            },
+            z: 10,
+            symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAC4CAYAAAD0dVxRAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjZEN0QxNzQ4NTk2QTExRUI5MzMyRDRDRDREOEI5MjZGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjZEN0QxNzQ5NTk2QTExRUI5MzMyRDRDRDREOEI5MjZGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NkQ3RDE3NDY1OTZBMTFFQjkzMzJENENENEQ4QjkyNkYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NkQ3RDE3NDc1OTZBMTFFQjkzMzJENENENEQ4QjkyNkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz49V5Q0AAAIdklEQVR42rxc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'
+          }
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts6() {
+      var myChart = echarts.init(document.getElementById('echarts6'))
+      var option = {
+        //图表的颜色
+        color: ['#00d8ff', '#dddedf'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['1月', '2月', '3月', '4月', '5月'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#3d456c',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              color: '#8c97bf',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: '#3d456c',
+                width: 1,
+              },
+            },
+            axisLabel: { color: '#8c97bf' },
+            axisTick: {
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#1a1f3e',
+              },
+            },
+          }
+        ],
+        series: [
+          {
+            name: '柱1',
+            type: 'pictorialBar',
+            barWidth: 28,
+            data: [1100, 600, 1800, 1400, 800],
+            animationDuration: 3000,
+            animationDelay: 200,
+            itemStyle: {
+              opacity: 0.95,
+              // 柱子颜色渐变
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#0a1a43' },
+                { offset: 0.5, color: '#2a3d96' },
+                { offset: 1, color: '#5266fe' },
+              ]),
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1,
+              },
+            },
+            z: 10,
+            symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAADFCAYAAABO1zIJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjkxNjM4ODdCNTk2QzExRUJBRDAyRjMwRjgzMDFCODA0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjkxNjM4ODdDNTk2QzExRUJBRDAyRjMwRjgzMDFCODA0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTE2Mzg4Nzk1OTZDMTFFQkFEMDJGMzBGODMwMUI4MDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTE2Mzg4N0E1OTZDMTFFQkFEMDJGMzBGODMwMUI4MDQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5PRWUBAAAH4UlEQVR42sxc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'
+          }
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts7() {
+      var myChart = echarts.init(document.getElementById('echarts7'))
+      var lineData = [1300, 1600, 800, 1800, 400, 1100, 1500];
+      var maxNum = lineData.sort((num1, num2) => {
+        return num2 - num1
+      })[0]
+      var newData = []
+      for (var i = 0; i < lineData.length; i++) {
+        newData.push(maxNum + 200)
+      }
+
+      var option = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        xAxis: {
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+          axisLine: {
+            lineStyle: {
+              color: '#ccc'
+            }
+          }
+        },
+        yAxis: {
+          splitLine: { show: false },
+          axisLine: {
+            lineStyle: {
+              color: '#ccc'
+            }
+          }
+        },
+        series: [
+          {
+            name: 'line',
+            type: 'bar',
+            barGap: '-100%',
+            barWidth: 24,
+            itemStyle: {
+              color: '#2d87fe'
+            },
+            z: -12,
+            data: lineData,
+          },
+          {
+            name: 'dotted',
+            type: 'pictorialBar',
+            symbol: 'rect',
+            itemStyle: {
+              color: '#0d2d66'
+            },
+            symbolRepeat: true,
+            symbolSize: [24, 4],
+            symbolMargin: 2,
+            data: newData
+          }]
+      };
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts8() {
+      // var myChart = echarts.init(document.getElementById('echarts8'))
+
+
+      // myChart.clear()
+      // myChart.setOption(option)
+      // window.addEventListener('resize', function () {
+      //   myChart.resize()
+      // })
+    }
+
+    function echarts9() {
+      var myChart = echarts.init(document.getElementById('echarts9'))
+      var option = {
+        color: ['#44ddee'],
+        tooltip: {},
+        radar: {
+          name: {
+            textStyle: {
+              color: '#fff'
+            }
+          },
+          indicator: [
+            { name: '销售', max: 6500 },
+            { name: '管理', max: 16000 },
+            { name: '信息技术', max: 30000 },
+            { name: '客服', max: 38000 },
+            { name: '研发', max: 52000 },
+            { name: '市场', max: 25000 }
+          ],
+          splitArea: {
+            areaStyle: {
+              color: [
+                'rgba(25, 40, 98, 1)',
+                'rgba(25, 40, 98, 1)',
+                'rgba(25, 40, 98, 1)',
+                'rgba(25, 40, 98, 1)',
+                'rgba(3, 6, 32, 0.2)',
+              ],
+              shadowColor: 'rgba(0, 0, 0, 0.3)',
+              shadowBlur: 0
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#374c9c'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              // 使用深浅的间隔色
+              color: ['#192862', '#192862', '#192862', '#192862', '#192862', '#202a66',]
+            }
+          }
+        },
+        series: [{
+          name: '预算',
+          type: 'radar',
+          data: [
+            {
+              value: [4300, 10000, 20000, 9000, 33000, 14000],
+              name: '预算分配',
+              areaStyle: {
+                color: '#283a88'
+              }
+            }
+          ]
+        }]
+      };
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts10() {
+      var myChart = echarts.init(document.getElementById('echarts10'))
+
+      data = [{
+        name: 'user1',
+        value: 10,
+      },
+      {
+        name: 'user2',
+        value: 20,
+      },
+      {
+        name: 'user3',
+        value: 30,
+      },
+      {
+        name: 'user4',
+        value: 40,
+      },
+      {
+        name: 'user5',
+        value: 50,
+      }
+      ];
+      getArrByKey = (data, k) => {
+        let key = k || "value";
+        let res = [];
+        if (data) {
+          data.forEach(function (t) {
+            res.push(t[key]);
+          });
+        }
+        return res;
+      };
+      getSymbolData = (data) => {
+        let arr = [];
+        for (var i = 0; i < data.length; i++) {
+          arr.push({
+            value: data[i].value,
+            symbolPosition: 'end'
+          })
+        }
+        return arr;
+      }
+      getColors = (data, k) => {
+        let key = k || "value";
+        let res = [];
+        if (data) {
+          data.forEach(function (t) {
+            res.push(t[key]);
+          });
+        }
+        return res;
+      };
+
+      opt = {
+        index: 0
+      }
+      data = data.sort((a, b) => {
+        return b.value - a.value
+      });
+
+      var option = {
+        grid: {
+          top: '2%',
+          bottom: -15,
+          right: 30,
+          left: 30,
+          containLabel: true
+        },
+        xAxis: {
+          show: false
+        },
+        yAxis: [
+          {
+            triggerEvent: true,
+            show: true,
+            inverse: true,
+            data: getArrByKey(data, 'name'),
+            axisLine: {
+              show: false
+            },
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              show: false,
+            },
+          },
+          {
+            triggerEvent: true,
+            show: true,
+            inverse: true,
+            data: getArrByKey(data, 'name'),
+            axisLine: {
+              show: false
+            },
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              interval: 0,
+              shadowOffsetX: '-20px',
+              color: ['#fff'],
+              align: 'right',
+              verticalAlign: 'bottom',
+              lineHeight: 30,
+              fontSize: 13,
+              formatter: function (value, index) {
+                return data[index].value
+              },
+            }
+          }
+        ],
+        series: [
+          {
+            name: '条',
+            type: 'bar',
+            showBackground: true,
+            barBorderRadius: 30,
+            yAxisIndex: 0,
+            data: data,
+            barWidth: 5,
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  1,
+                  0,
+                  [
+                    {
+                      offset: 0,
+                      color: '#132a37'
+                    },
+                    {
+                      offset: 0.7,
+                      color: '#65e3ac'
+                    },
+                    {
+                      offset: 1,
+                      color: '#65e3ac'
+                    }
+                  ],
+                  false
+                )
+              },
+            },
+            label: {
+              normal: {
+                color: '#fff',
+                show: true,
+                position: [0, '-20px'],
+                textStyle: {
+                  fontSize: 16
+                },
+                formatter: function (a, b) {
+                  return a.name
+                }
+              }
+            }
+          },
+          {
+            name: 'XXX',
+            type: 'pictorialBar',//圆点是一个图片,要修改颜色需要把base64编码换了
+            // symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAMAAADWZboaAAAAZlBMVEUAAABe3uVe3+Vf3uVf3+Zf3uVg3+Zg3+Zf3+Vi4OZh4OZg3+Z86/Bh3+Zi4Odj4Odi4OZ86/B76/B86/Bj4ed56+9x5+xn4umB7/N87PB36e+A7/N+7fF/7vJ/7vJ+7fGA7/OB7/PReX+lAAAAIXRSTlMABQkVDREmIhk3MR10LEFFPHh7cUprXE35h2XnqMLAp+mHAG9cAAAB5ElEQVRIx83WjU7CMBQFYIoiKMqU/XUboHv/l/Tce7t2XamDNSacETEmX86tlK2rx4py150o+MstMBLwWRfHKo6JCVxLnvmFGBjFQ58oF1//sUZhGy/ClSTWObgnL4O+bkeN4nY2okfNMbkRt9/vtxz8InoTsWplJSCzFxPmO8+GpSIByX3YQAuGDWtRKhKjCnxDXhF6Z4yxnZ20Wgko7BMRDmxtSGVaI4kdTIgb+zTYoJQlIMlDlmUFgrcDWWC201qSayqlTkiCddWWeV62VU0YlnpRi9VOKaSUsiyq/N0krwq2Ugt7lVpZl5BfHNiytjagMi+XYp0kCR45hMlivVQrE/uU5pXSrCB5bM6d1t2lOZItMqmliT3q5uVxqxzyW/ccfYLNKx7ZTeykMvNyac2yt2Fbc61MHLSC0rwoxbiNdlQ3GBm1NLHQsHUrtEXppR/ljNpW6DbSCoqlFiVoN6YdaFlgsSFVPs1BdT8OaB5QyQzVcaqWDows/zepxR8ObLglTrdtCRVuRNj4Rrxh+//0ke2f8KVL+Kon3GCSbmsJN9OUW3j6g0Ns+LgCij2u0h+Sghc8mlMPBMgdx5DFh59VmOVHrvmDnoNxCz3J7MFWsMuaLyR089xz/xhlfijvwutR8gv3zk6BLUUeCgAAAABJRU5ErkJggg==',
+            symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ2QjYzM0Q2NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ2QjYzM0Q3NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDZCNjMzRDQ1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDZCNjMzRDU1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5XONimAAADsElEQVR42rRYPY8TMRDNOnvZXHLJXe6OghLR0NAiWvgHCERFCRUlPT+BDgkh8RPokOgpqA6QKBEtDR/3mWw2yWbNGD1HIzN2vBsY6elya6/9PPN2PHbyTH9sNbQOYYuQEtqEBM8rQgnM8H8tS2v2NyT6hC5BRb6zIOSA/pekDJkhIWPPrCfM3yWbUGHcDvPmLmFAGBMm68jFkDJkdvBbY9AcZNZZAq/2QdCM1SOcwIO1SZkV72OwFshc1NSIWcQUyOAxM+ch4RTPxYl9zw9ByITmJ+GsiWiZmVD/ABHjwRE8GOUp88IB2kyIfoGYz9roq+CZJd7THs+doH0Az1WuxyRSexBnCQ9VHiJmldv4LU0+g/YKof0CfYaYr+Qac0ltA+aFYw+hAYSfRAjcYA79uB/GGPP3EMof1rvKGWiI32fCIFZngzWEpCR7CYt1zc6Tcn1xUn2EYg63uyvnX2Jds8LuCmE+x++V911SNt6SzjqtzW0kSKaAIxRCuSKVwUs2S3Prelzf1GN7wvMJ0/SKtXXr1CPsUIK9S7hDuArxvie8IHwLaCxzFl8glKZNpaxjS/DSFiCZGfgV4Zbz/BrhPuER4Z3n3Z4zl0YIzZgd5aSGhTCxz54KhFpMtC8JlwMLkqqJP45QrBZaClnY5yXziT9Yox8T9oeBsLuCtymorZjYfZlbshuRFcbNNXrkZudXKuJr8YUnxoYNxl5tor5OvqrgaySpL4G2ykNSK1YBSKHyFXKfIom9DrSVHqlUvNxIBGLzwCqfBNqNvSG8DdTt2lNGlcr5HDNhC/CF8IhwTwiRGes54XGgFp8G0sQ8ZUnTlhq5k9TygLA/EG4TrhOuIKMfYfcPaSkXUk8bbYuUMd9le+DSKci2A+nBEP8MxJhU5/e4B3mOsrXzjqeE1a3NrWCbL88APb4xK6cStKxTQfCbEpthDCmXJSBcuqTsSdZXXhSo2ZcNCI1xANGCuHtOsfdXqj9HKDuebGyIf2f9Yo9V556T1IjprPQdHCocGA6gLS1Uopodv21txI9YFcJdBLzaRnmtQHy87ohlTx8j7PTK84nbY9SswSXJPjsPHMce26esNu9joNPI+4OQ9ZmwLSFd5y5hCveP2DEph6vrir0Lr9v6LIf3dZNblzmEam9L+sAMmpl5vKdAIHMS7xJkik2vgiqEbgLxdzFZxrRVAQkIKaEimMRenNW5yVsg+SlGrAMvtJ1tSKP/nJ3r/tv1It9Qc1acKZYSdMMEu7LfAgwAaQ0Mlnz6kBkAAAAASUVORK5CYII=',
+            symbolSize: [50, 50],
+            symbolOffset: [20, 0],
+            z: 12,
+            data: getSymbolData(data)
+          },
+        ]
+      };
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts11() {
+      var myChart = echarts.init(document.getElementById('echarts11'))
+
+      let data = 99.9;
+      var option = {
+        // 标题：【0】指数显示，【1】数值显示
+        title: [
+          {
+            text: '数据名称',
+            x: 'center',
+            top: '68%',
+            textStyle: {
+              color: '#fff',
+              fontSize: 14,
+              fontWeight: '100',
+            },
+            backgroundColor: '#0a064b',
+            borderRadius: 17,
+            borderColor: '#2474b4',
+            borderWidth: 2,
+            padding: [8, 15],
+          },
+          {
+            text: data + '%',
+            x: 'center',
+            top: '35%',
+            textStyle: {
+              fontSize: '54',
+              color: '#52eeeb',
+              fontFamily: 'electronicFont',
+              fontWeight: '200',
+            },
+          }
+        ],
+        // 极坐标系
+        polar: {
+          radius: ['50%', '60%'],
+          center: ['50%', '50%'],
+        },
+        // 极坐标系：角度轴
+        angleAxis: {
+          max: 100 * 360 / 270,
+          show: false,
+          type: 'value',
+          startAngle: 225
+        },
+        // 极坐标系：径向轴
+        radiusAxis: {
+          type: 'category',
+          show: true,
+          axisLabel: {
+            show: false,
+          },
+          axisLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false
+          },
+        },
+        series: [
+          // 第一层：数据以进度条的形式展示
+          {
+            type: 'bar',
+            data: [
+              {
+                value: data
+              }
+            ],
+            itemStyle: {
+              color: '#2caccd'
+            },
+            barGap: '-100%',
+            coordinateSystem: 'polar',
+            roundCap: true,
+            cursor: 'auto',
+            z: 20
+          },
+          // 第二层：进度条阴影
+          {
+            type: 'bar',
+            data: [
+              {
+                value: 100
+              }
+            ],
+            itemStyle: {
+              color: '#071943'
+            },
+            barGap: '-100%',
+            coordinateSystem: 'polar',
+            roundCap: true,
+            cursor: 'auto',
+            z: 2
+          },
+        ]
+      };
+
+      // 随机数据
+      function numb() {
+        data = Math.floor(Math.random() * 100);
+        option.title[0].text = '数据名称';
+        option.title[1].text = data + '%';
+        option.series[0].data[0].value = data;
+        myChart.setOption(option, true);
+      }
+      setInterval(function () {
+        numb();
+      }, 2000);
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts12() {
+      var myChart = echarts.init(document.getElementById('echarts12'))
+      let angle = 0; //角度，用来做简单的动画效果的
+      var timerId;
+
+      var data = 55; //数值大小
+      var max = 100; //满刻度大小
+      var option = {
+        title:
+          [
+            {
+              text: '数据名称',
+              x: 'center',
+              top: '53%',
+              textStyle: {
+                color: '#fff',
+                fontSize: 16,
+                fontWeight: '300',
+              },
+              padding: [8, 15],
+            },
+            {
+              text: data + '%',
+              x: 'center',
+              y: '35%',
+              textStyle: {
+                color: '#3ef3ff',
+                fontSize: '50',
+                fontFamily: 'electronicFont',
+              },
+            }
+          ],
+        color: ["#fff", 'rgba(255,255,255,.4)', 'transparent'],
+        series: [
+          {
+            type: "pie",
+            startAngle: -90,
+            center: ["50%", "50%"],
+            radius: ["50%", "57%"],
+            hoverAnimation: false,
+            labelLine: {
+              show: false
+            },
+            data:
+              [
+                {
+                  name: "",
+                  value: data,
+                  itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                      offset: 0,
+                      color: '#2568bf'
+
+                    }, {
+                      offset: 0.5,
+                      color: '#2794d1'
+
+                    }, {
+                      offset: 1,
+                      color: '#2abfe3'
+
+                    }])
+                  },
+                },
+                { //画中间的图标
+                  name: "",
+                  value: 0,
+                  label: {
+                    position: 'inside',
+                    backgroundColor: {
+                      image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAABGklEQVQ4ja3UsUqCURjG8Z9fYSFFJEmzq5FDq7Z0B11DW11BuHQDDV5At1A3EK0OQovkpJOTBJKkgUPQ8B1F5DPUz2c87/P8OYf3vG+m1OxZoiNc4Rw5/KCFNwyTArsJZyd4wA32E+oTPAXP53whWjBeoo27JSDYwy0+gj8RVsErCksgiyoEf3URlscLsiuCpsriOeRnsNoaN0q6YQ0ypWYvhz4ONoTBCKeR+M1pQEK+GqGYEjRVMcLxlmD5COMtwUaReES2oVaEBgYpQQM0IvGs1VPC6phMP+0juhuCuiE/m4AxrvG1JmgYcuN5GHEjKuisCOoE/6yBiyuojTLuxSOWpH6ol8VraKbMP5t2Bxc4wyG+Q/gdv0mBP9wQNmmuiqSbAAAAAElFTkSuQmCC'
+                    },
+                    width: 12,
+                    height: 12,
+                    padding: 12
+                  }
+                },
+                { //画剩余的刻度圆环
+                  name: "",
+                  value: max - data,
+                  itemStyle: {
+                    color: "#071a44"
+                  },
+                },
+              ]
+          },
+          {
+            name: "ring",
+            type: 'custom',
+            coordinateSystem: "none",
+            renderItem: function (params, api) {
+              return {
+                type: 'arc',
+                shape: {
+                  cx: api.getWidth() / 2,
+                  cy: api.getHeight() / 2,
+                  r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.45,
+                  startAngle: (90 + -angle) * Math.PI / 180,
+                  endAngle: (270 + -angle) * Math.PI / 180
+                },
+                style: {
+                  stroke: "#32c3d8",
+                  fill: "transparent",
+                  lineWidth: 1.5
+                },
+                silent: true
+              };
+            },
+            data: [0]
+          },
+        ]
+      }
+
+      //获取圆上面某点的坐标(x0,y0表示坐标，r半径，angle角度)
+      function getCirlPoint(x0, y0, r, angle) {
+        let x1 = x0 + r * Math.cos(angle * Math.PI / 180)
+        let y1 = y0 + r * Math.sin(angle * Math.PI / 180)
+        return {
+          x: x1,
+          y: y1
+        }
+      }
+
+      function draw() {
+        angle = angle + 3
+        myChart.setOption(option, true)
+      }
+      if (timerId) {
+        clearInterval(timerId);
+      }
+      timerId = setInterval(function () {
+        draw()
+      }, 100);
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+
+    }
+
+    function echarts13() {
+      var myChart = echarts.init(document.getElementById('echarts13'))
+
+      let data = 100
+
+      var option = {
+        // 标题：【0】指数显示，【1】数值显示
+        title:
+          [
+            {
+              text: '数据名称',
+              x: 'center',
+              top: '50%',
+              textStyle: {
+                color: '#7fa6c4',
+                fontSize: 14,
+                fontWeight: '100',
+              }
+            }, {
+              text: data + '%',
+              x: 'center',
+              top: '38%',
+              textStyle: {
+                fontSize: 30,
+                color: '#1afcff',
+                fontFamily: 'SimHei',
+                fontStyle: 'oblique',
+                foontWeight: '500',
+              },
+            }
+          ],
+        // 极坐标系
+        polar: {
+          radius: ['50%', '56%'],
+          center: ['50%', '50%'],
+        },
+        // 极坐标系：角度轴
+        angleAxis: {
+          max: 100 * 360 / 180,
+          show: false,
+          type: 'value',
+          startAngle: 180
+        },
+        // 极坐标系：径向轴
+        radiusAxis: {
+          type: 'category',
+          show: true,
+          axisLabel: {
+            show: false,
+          },
+          axisLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false
+          },
+        },
+        series: [
+          // 第二层：数据以进度条的形式展示
+          {
+            type: 'bar',
+            data: [
+              {
+                value: data
+              },
+            ],
+            itemStyle: {
+              color: {
+                type: 'linear',
+                x: 0, //右
+                y: 0.5, //下
+                x2: 1, //左
+                y2: 0, //上
+                colorStops: [{
+                  offset: 0,
+                  color: '#0065ff'
+                }, {
+                  offset: 0.8,
+                  color: '#3af9fd'
+                }, {
+                  offset: 1,
+                  color: '#8cfff8'
+                }]
+              }
+            },
+            barGap: '-100%',
+            coordinateSystem: 'polar',
+            roundCap: true,
+            cursor: 'auto',
+            z: 20
+          },
+          // 第二层：进度条背景
+          {
+            type: 'bar',
+            data: [
+              {
+                value: 100,
+              }
+            ],
+            itemStyle: {
+              color: '#16358f'
+            },
+            barGap: '-100%',
+            coordinateSystem: 'polar',
+            roundCap: true,
+            cursor: 'auto',
+            emphasis: {
+              itemStyle: {
+                color: '#16358f'
+              }
+            },
+            z: 2
+          },
+          // 第三层；仪表盘：只显示刻度
+          {
+            type: 'gauge',
+            radius: '46%',//半径
+            startAngle: '180',
+            endAngle: '0',
+            splitNumber: 10,
+            center: ['50%', '50%'],
+            min: 0,
+            max: 100,
+            pointer: {
+              show: false
+            },
+            title: {
+              show: false
+            },
+            detail: {
+              show: false
+            },
+            data: [{
+              value: 100,
+              name: ''
+            }],
+            axisLine: {
+              lineStyle: {
+                width: 8,
+                color: [
+                  [0, '#2d6987'],
+                  [1, '#2d6987']
+                ],
+                opacity: 0
+              }
+            },
+            axisTick: {
+              length: 8,
+              lineStyle: {
+                color: '#2d6987'
+              }
+            },
+            splitLine: {
+              show: false
+            },
+            axisLabel: {
+              show: false,
+              distance: 18, //距离刻度的距离
+              lineHeight: -50,
+              formatter: function (value) {
+                return value % 100 === 0 ? value : '';
+              }
+            }
+          },
+
+        ]
+      };
+
+      // 随机数据
+      function numb() {
+        data = Math.floor(Math.random() * 100);
+        option.title[0].text = '数据名称';
+        option.title[1].text = data + '%';
+        option.series[0].data[0].value = data;
+        myChart.setOption(option, true);
+      }
+      setInterval(function () {
+        numb();
+      }, 3000);
+
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+
+    }
+
+    function echarts14() {
+      var myChart = echarts.init(document.getElementById('echarts14'))
+
+      let angle = 0; //角度，用来做简单的动画效果的
+      var timerId;
+
+      let data = 100;
+      var option = {
+        // 标题：【0】指数显示，【1】数值显示
+        title: [
+          {
+            text: '数据名称',
+            x: 'center',
+            top: '56%',
+            textStyle: {
+              color: '#fff',
+              fontSize: 14,
+              fontWeight: '100',
+            },
+          },
+          {
+            text: 4253,//此图表表达的意思有问题,数值的最大值不确定,不管数值多少,图表不变
+            x: 'center',
+            top: '35%',
+            textStyle: {
+              fontSize: '54',
+              color: '#52eeeb',
+              fontFamily: 'electronicFont',
+              fontWeight: '200',
+            },
+          }
+        ],
+        // 极坐标系
+        polar: {
+          radius: ['50%', '60%'],
+          center: ['50%', '50%'],
+        },
+        // 极坐标系：角度轴
+        angleAxis: {
+          max: 100 * 360 / 270,
+          show: false,
+          type: 'value',
+          startAngle: 270
+        },
+        // 极坐标系：径向轴
+        radiusAxis: {
+          type: 'category',
+          show: true,
+          axisLabel: {
+            show: false,
+          },
+          axisLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false
+          },
+        },
+        series: [
+          // 第一层：数据以进度条的形式展示
+          {
+            type: 'bar',
+            data: [
+              {
+                value: data
+              }
+            ],
+            itemStyle: {
+              color: {
+                type: 'linear',
+                x: 0, //右
+                y: 1, //下
+                x2: 0, //左
+                y2: 0, //上
+                colorStops: [{
+                  offset: 0,
+                  color: '#050d27'
+                }, {
+                  offset: 0.2,
+                  color: '#175372'
+                }, {
+                  offset: 0.5,
+                  color: '#2ba2c9'
+                }, {
+                  offset: 1,
+                  color: '#33c6db'
+                }]
+              }
+            },
+            barGap: '-100%',
+            coordinateSystem: 'polar',
+            roundCap: true,
+            cursor: 'auto',
+            z: 20
+          },
+          // 第二层：进度条阴影
+          {
+            type: 'bar',
+            data: [
+              {
+                value: data
+              }
+            ],
+            itemStyle: {
+              color: '#030620'
+            },
+            barGap: '-100%',
+            coordinateSystem: 'polar',
+            roundCap: true,
+            cursor: 'auto',
+            z: 2
+          },
+          {
+            name: "ring",
+            type: 'custom',
+            coordinateSystem: "none",
+            renderItem: function (params, api) {
+              return {
+                type: 'arc',
+                shape: {
+                  cx: api.getWidth() / 2,
+                  cy: api.getHeight() / 2,
+                  r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.45,
+                  startAngle: (90 + -angle) * Math.PI / 180,
+                  endAngle: (270 + -angle) * Math.PI / 180
+                },
+                style: {
+                  stroke: "#32c3d8",
+                  fill: "transparent",
+                  lineWidth: 1.5
+                },
+                silent: true
+              };
+            },
+            data: [0]
+          },
+        ]
+      };
+
+      // 随机数据
+      function numb() {
+        // data = Math.floor(Math.random() * 100);
+        data = 100
+        option.title[0].text = '数据名称';
+        // option.title[1].text = data;
+        option.series[0].data[0].value = data;
+        myChart.setOption(option, true);
+      }
+      setInterval(function () {
+        numb();
+      }, 2000);
+
+
+      //获取圆上面某点的坐标(x0,y0表示坐标，r半径，angle角度)
+      function getCirlPoint(x0, y0, r, angle) {
+        let x1 = x0 + r * Math.cos(angle * Math.PI / 180)
+        let y1 = y0 + r * Math.sin(angle * Math.PI / 180)
+        return {
+          x: x1,
+          y: y1
+        }
+      }
+
+      function draw() {
+        angle = angle + 3
+        myChart.setOption(option, true)
+      }
+      if (timerId) {
+        clearInterval(timerId);
+      }
+      timerId = setInterval(function () {
+        draw()
+      }, 100);
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts15() {
+      var myChart = echarts.init(document.getElementById('echarts15'))
+
+      /*************************
+      pie3D 尝试
+      
+      更新时间: 2020.10.8 17:12 v1.1
+      使用组件: grid3D、xAxis3D、yAxis3D、zAxis3D、surface
+       EC 版本: 4.8.0
+       GL 版本：0.4.3
+      根据用户ZhXand618的模板克隆
+      如果转载: 请注明出处
+      
+      *************************
+      【 getParametricEquation 函数说明 】 :
+      *************************
+          根据传入的
+          startRatio（浮点数）: 当前扇形起始比例，取值区间 [0, endRatio)
+          endRatio（浮点数）: 当前扇形结束比例，取值区间 (startRatio, 1]
+          isSelected（布尔值）:是否选中，效果参照二维饼图选中效果（单选）
+          isHovered（布尔值）: 是否放大，效果接近二维饼图高亮（放大）效果（未能实现阴影）
+          k（0~1之间的浮点数）：用于参数方程的一个参数，取值 0~1 之间，通过「内径/外径」的值换算而来。
+          
+          生成 3D 扇形环曲面
+      
+      *************************
+      【 getPie3D 函数说明 】 :
+      *************************
+          根据传入的
+          pieData（object）：饼图数据
+          internalDiameterRatio（0~1之间的浮点数）：内径/外径的值（默认值 1/2），当该值等于 0 时，为普通饼图
+          
+          生成模拟 3D 饼图的配置项 option
+          
+          备注：饼图数据格式示意如下
+          [{
+              name: '数据1',
+              value: 10
+          }, {
+              // 数据项名称
+              name: '数据2',
+              value : 56,
+              itemStyle:{
+                  // 透明度
+                  opacity: 0.5,
+                  // 扇形颜色
+                  color: 'green'
+              }
+          }]
+          
+      *************************
+      【 鼠标事件监听说明 】 :
+      *************************
+          click： 实现饼图的选中效果（单选）
+                  大致思路是，通过监听点击事件，获取到被点击数据的系列序号 params.seriesIndex，
+                  然后将对应扇形向外/向内移动 10% 的距离。
+                  
+          mouseover： 近似实现饼图的高亮（放大）效果
+                  大致思路是，在饼图外部套一层透明的圆环，然后监听 mouseover 事件，获取
+                  到对应数据的系列序号 params.seriesIndex 或系列名称 params.seriesName，
+                  如果鼠标移到了扇形上，则先取消高亮之前的扇形（如果有）,再高亮当前扇形；
+                  如果鼠标移到了透明圆环上，则只取消高亮之前的扇形（如果有），不做任何高亮。
+
+          globalout： 当鼠标移动过快，直接划出图表区域时，有可能监听不到透明圆环的 mouseover，
+                  导致此前高亮没能取消，所以补充了对 globalout 的监听。
+              
+      *************************/
+
+      // 生成扇形的曲面参数方程，用于 series-surface.parametricEquation
+      function getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, h) {
+
+        // 计算
+        let midRatio = (startRatio + endRatio) / 2;
+        let startRadian = startRatio * Math.PI * 2;
+        let endRadian = endRatio * Math.PI * 2;
+        let midRadian = midRatio * Math.PI * 2;
+
+        // 如果只有一个扇形，则不实现选中效果。
+        if (startRatio === 0 && endRatio === 1) {
+          isSelected = false;
+        }
+
+        // 通过扇形内径/外径的值，换算出辅助参数 k（默认值 1/3）
+        k = typeof k !== 'undefined' ? k : 1 / 3;
+
+        // 计算选中效果分别在 x 轴、y 轴方向上的位移（未选中，则位移均为 0）
+        let offsetX = isSelected ? Math.cos(midRadian) * 0.1 : 0;
+        let offsetY = isSelected ? Math.sin(midRadian) * 0.1 : 0;
+
+        // 计算高亮效果的放大比例（未高亮，则比例为 1）
+        let hoverRate = isHovered ? 1.05 : 1;
+
+        // 返回曲面参数方程
+        return {
+          u: {
+            min: -Math.PI,
+            max: Math.PI * 3,
+            step: Math.PI / 32
+          },
+
+          v: {
+            min: 0,
+            max: Math.PI * 2,
+            step: Math.PI / 20
+          },
+
+          x: function (u, v) {
+            if (u < startRadian) {
+              return offsetX + Math.cos(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            if (u > endRadian) {
+              return offsetX + Math.cos(endRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            return offsetX + Math.cos(u) * (1 + Math.cos(v) * k) * hoverRate;
+          },
+
+          y: function (u, v) {
+            if (u < startRadian) {
+              return offsetY + Math.sin(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            if (u > endRadian) {
+              return offsetY + Math.sin(endRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            return offsetY + Math.sin(u) * (1 + Math.cos(v) * k) * hoverRate;
+          },
+
+          z: function (u, v) {
+            if (u < -Math.PI * 0.5) {
+              return Math.sin(u);
+            }
+            if (u > Math.PI * 2.5) {
+              return Math.sin(u) * h * .1;
+            }
+            return Math.sin(v) > 0 ? 1 * h * .1 : -1;
+          }
+        }
+
+      }
+
+      // 生成模拟 3D 饼图的配置项
+      function getPie3D(pieData, internalDiameterRatio) {
+        let series = [];
+        let sumValue = 0;
+        let startValue = 0;
+        let endValue = 0;
+        let legendData = [];
+        let k = typeof internalDiameterRatio !== 'undefined' ? (1 - internalDiameterRatio) / (1 + internalDiameterRatio) : 1 / 3;
+
+        // 为每一个饼图数据，生成一个 series-surface 配置
+        for (let i = 0; i < pieData.length; i++) {
+
+          sumValue += pieData[i].value;
+
+          let seriesItem = {
+            name: typeof pieData[i].name === 'undefined' ? `series${i}` : pieData[i].name,
+            type: 'surface',
+            parametric: true,
+            wireframe: {
+              show: false
+            },
+            shading: 'lambert',
+            pieData: pieData[i],
+            pieStatus: {
+              selected: false,
+              hovered: false,
+              k: k
+            }
+          };
+
+          if (typeof pieData[i].itemStyle != 'undefined') {
+
+            let itemStyle = {};
+
+            typeof pieData[i].itemStyle.color != 'undefined' ? itemStyle.color = pieData[i].itemStyle.color : null;
+            typeof pieData[i].itemStyle.opacity != 'undefined' ? itemStyle.opacity = pieData[i].itemStyle.opacity : null;
+
+            seriesItem.itemStyle = itemStyle;
+          }
+          series.push(seriesItem);
+        }
+
+        // 使用上一次遍历时，计算出的数据和 sumValue，调用 getParametricEquation 函数，
+        // 向每个 series-surface 传入不同的参数方程 series-surface.parametricEquation，也就是实现每一个扇形。
+        for (let i = 0; i < series.length; i++) {
+          endValue = startValue + series[i].pieData.value;
+
+          series[i].pieData.startRatio = startValue / sumValue;
+          series[i].pieData.endRatio = endValue / sumValue;
+          series[i].parametricEquation = getParametricEquation(series[i].pieData.startRatio, series[i].pieData.endRatio, false, false, k, series[i].pieData.value);
+
+          startValue = endValue;
+
+          legendData.push(series[i].name);
+        }
+
+        // 补充一个透明的圆环，用于支撑高亮功能的近似实现。
+        series.push({
+          name: 'mouseoutSeries',
+          type: 'surface',
+          parametric: true,
+          wireframe: {
+            show: false
+          },
+          itemStyle: {
+            opacity: 0
+          },
+          parametricEquation: {
+            u: {
+              min: 0,
+              max: Math.PI * 2,
+              step: Math.PI / 20
+            },
+            v: {
+              min: 0,
+              max: Math.PI,
+              step: Math.PI / 20
+            },
+            x: function (u, v) {
+              return Math.sin(v) * Math.sin(u) + Math.sin(u);
+            },
+            y: function (u, v) {
+              return Math.sin(v) * Math.cos(u) + Math.cos(u);
+            },
+            z: function (u, v) {
+              return Math.cos(v) > 0 ? 0.1 : -0.1;
+            }
+          }
+        });
+
+        console.log(series);
+        // 准备待返回的配置项，把准备好的 legendData、series 传入。
+        let option = {
+          legend: {
+            data: legendData,
+            textStyle: {
+              color: '#fff'
+            },
+            orient: 'vertical',
+            right: 0,
+            top: 'center',
+            itemWidth: 15,
+            itemHeight: 12
+          },
+          tooltip: {
+            formatter: params => {
+              if (params.seriesName !== 'mouseoutSeries') {
+                return `${params.seriesName}<br/><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${params.color};"></span>${option.series[params.seriesIndex].pieData.value}`;
+              }
+            }
+          },
+          label: {
+            textStyle: {
+              color: '#fff'
+            }
+          },
+          xAxis3D: {
+            min: -1,
+            max: 1
+          },
+          yAxis3D: {
+            min: -1,
+            max: 1
+          },
+          zAxis3D: {
+            min: -1,
+            max: 1
+          },
+          grid3D: {
+            show: false,
+            boxHeight: 12,
+            viewControl: {//3d效果可以放大、旋转等，请自己去查看官方配置
+              alpha: 50,
+              rotateSensitivity: 0,
+              zoomSensitivity: 0,
+              panSensitivity: 0,
+              autoRotate: false//旋转
+            },
+            postEffect: {//配置这项会出现锯齿，请自己去查看官方配置有办法解决 
+              enable: true,
+              bloom: {
+                enable: true,
+                bloomIntensity: 0.1
+              },
+              SSAO: {
+                enable: true,
+                quality: 'medium',
+                radius: 2
+              }
+            }
+          },
+          series: series
+        };
+        return option;
+      }
+
+      // 传入数据生成 option
+      var option = getPie3D(
+        [
+          {
+            name: 'aa',
+            value: 31,
+            itemStyle: {
+              color: '#2451ff'
+            }
+          }, {
+            name: 'bb',
+            value: 28,
+            itemStyle: {
+              color: '#25bd97',
+            }
+          }, {
+            name: 'cc',
+            value: 8,
+            itemStyle: {
+              color: '#edcc31'
+            }
+          }, {
+            name: 'dd',
+            value: 18,
+            itemStyle: {
+              color: '#b35aff'
+            }
+          }, {
+            name: 'ee',
+            value: 15,
+            itemStyle: {
+              color: '#5aadd4'
+            }
+          }
+        ], 0.4);
+
+      // 监听鼠标事件，实现饼图选中效果（单选），近似实现高亮（放大）效果。
+      let selectedIndex = '';
+      let hoveredIndex = '';
+
+      // 监听点击事件，实现选中效果（单选）
+      myChart.on('click', function (params) {
+        // 从 option.series 中读取重新渲染扇形所需的参数，将是否选中取反。
+        let isSelected = !option.series[params.seriesIndex].pieStatus.selected;
+        let isHovered = option.series[params.seriesIndex].pieStatus.hovered;
+        let k = option.series[params.seriesIndex].pieStatus.k;
+        let startRatio = option.series[params.seriesIndex].pieData.startRatio;
+        let endRatio = option.series[params.seriesIndex].pieData.endRatio;
+
+
+        // 如果之前选中过其他扇形，将其取消选中（对 option 更新）
+        if (selectedIndex !== '' && selectedIndex !== params.seriesIndex) {
+          option.series[selectedIndex].parametricEquation = getParametricEquation(option.series[selectedIndex].pieData.startRatio, option.series[selectedIndex].pieData.endRatio, false, false, k, option.series[selectedIndex].pieData.value);
+          option.series[selectedIndex].pieStatus.selected = false;
+        }
+
+        // 对当前点击的扇形，执行选中/取消选中操作（对 option 更新）
+        option.series[params.seriesIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[selectedIndex].pieData.value);
+        option.series[params.seriesIndex].pieStatus.selected = isSelected;
+
+        // 如果本次是选中操作，记录上次选中的扇形对应的系列号 seriesIndex
+        isSelected ? selectedIndex = params.seriesIndex : null;
+
+        // 使用更新后的 option，渲染图表
+        myChart.setOption(option);
+      });
+
+      // 监听 mouseover，近似实现高亮（放大）效果
+      myChart.on('mouseover', function (params) {
+
+        // 准备重新渲染扇形所需的参数
+        let isSelected;
+        let isHovered;
+        let startRatio;
+        let endRatio;
+        let k;
+
+        // 如果触发 mouseover 的扇形当前已高亮，则不做操作
+        if (hoveredIndex === params.seriesIndex) {
+          return;
+          // 否则进行高亮及必要的取消高亮操作
+        } else {
+
+          // 如果当前有高亮的扇形，取消其高亮状态（对 option 更新）
+          if (hoveredIndex !== '') {
+            // 从 option.series 中读取重新渲染扇形所需的参数，将是否高亮设置为 false。
+            isSelected = option.series[hoveredIndex].pieStatus.selected;
+            isHovered = false;
+            startRatio = option.series[hoveredIndex].pieData.startRatio;
+            endRatio = option.series[hoveredIndex].pieData.endRatio;
+            k = option.series[hoveredIndex].pieStatus.k;
+
+            // 对当前点击的扇形，执行取消高亮操作（对 option 更新）
+            option.series[hoveredIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[hoveredIndex].pieData.value);
+            option.series[hoveredIndex].pieStatus.hovered = isHovered;
+
+            // 将此前记录的上次选中的扇形对应的系列号 seriesIndex 清空
+            hoveredIndex = '';
+          }
+
+          // 如果触发 mouseover 的扇形不是透明圆环，将其高亮（对 option 更新）
+          if (params.seriesName !== 'mouseoutSeries') {
+            // 从 option.series 中读取重新渲染扇形所需的参数，将是否高亮设置为 true。
+            isSelected = option.series[params.seriesIndex].pieStatus.selected;
+            isHovered = true;
+            startRatio = option.series[params.seriesIndex].pieData.startRatio;
+            endRatio = option.series[params.seriesIndex].pieData.endRatio;
+            k = option.series[params.seriesIndex].pieStatus.k;
+
+            // 对当前点击的扇形，执行高亮操作（对 option 更新）
+            option.series[params.seriesIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[params.seriesIndex].pieData.value + 15);
+            option.series[params.seriesIndex].pieStatus.hovered = isHovered;
+
+            // 记录上次高亮的扇形对应的系列号 seriesIndex
+            hoveredIndex = params.seriesIndex;
+          }
+
+          // 使用更新后的 option，渲染图表
+          myChart.setOption(option);
+        }
+      });
+
+      // 修正取消高亮失败的 bug
+      myChart.on('globalout', function () {
+        if (hoveredIndex !== '') {
+          // 从 option.series 中读取重新渲染扇形所需的参数，将是否高亮设置为 true。
+          isSelected = option.series[hoveredIndex].pieStatus.selected;
+          isHovered = false;
+          k = option.series[hoveredIndex].pieStatus.k;
+          startRatio = option.series[hoveredIndex].pieData.startRatio;
+          endRatio = option.series[hoveredIndex].pieData.endRatio;
+
+          // 对当前点击的扇形，执行取消高亮操作（对 option 更新）
+          option.series[hoveredIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[hoveredIndex].pieData.value);
+          option.series[hoveredIndex].pieStatus.hovered = isHovered;
+
+          // 将此前记录的上次选中的扇形对应的系列号 seriesIndex 清空
+          hoveredIndex = '';
+        }
+
+        // 使用更新后的 option，渲染图表
+        myChart.setOption(option);
+      });
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts16() {
+      var myChart = echarts.init(document.getElementById('echarts16'))
+
+      /*************************
+      pie3D 尝试
+      
+      更新时间: 2020.10.8 17:12 v1.1
+      使用组件: grid3D、xAxis3D、yAxis3D、zAxis3D、surface
+       EC 版本: 4.8.0
+       GL 版本：0.4.3
+      根据用户ZhXand618的模板克隆
+      如果转载: 请注明出处
+      
+      *************************
+      【 getParametricEquation 函数说明 】 :
+      *************************
+          根据传入的
+          startRatio（浮点数）: 当前扇形起始比例，取值区间 [0, endRatio)
+          endRatio（浮点数）: 当前扇形结束比例，取值区间 (startRatio, 1]
+          isSelected（布尔值）:是否选中，效果参照二维饼图选中效果（单选）
+          isHovered（布尔值）: 是否放大，效果接近二维饼图高亮（放大）效果（未能实现阴影）
+          k（0~1之间的浮点数）：用于参数方程的一个参数，取值 0~1 之间，通过「内径/外径」的值换算而来。
+          
+          生成 3D 扇形环曲面
+      
+      *************************
+      【 getPie3D 函数说明 】 :
+      *************************
+          根据传入的
+          pieData（object）：饼图数据
+          internalDiameterRatio（0~1之间的浮点数）：内径/外径的值（默认值 1/2），当该值等于 0 时，为普通饼图
+          
+          生成模拟 3D 饼图的配置项 option
+          
+          备注：饼图数据格式示意如下
+          [{
+              name: '数据1',
+              value: 10
+          }, {
+              // 数据项名称
+              name: '数据2',
+              value : 56,
+              itemStyle:{
+                  // 透明度
+                  opacity: 0.5,
+                  // 扇形颜色
+                  color: 'green'
+              }
+          }]
+          
+      *************************
+      【 鼠标事件监听说明 】 :
+      *************************
+          click： 实现饼图的选中效果（单选）
+                  大致思路是，通过监听点击事件，获取到被点击数据的系列序号 params.seriesIndex，
+                  然后将对应扇形向外/向内移动 10% 的距离。
+                  
+          mouseover： 近似实现饼图的高亮（放大）效果
+                  大致思路是，在饼图外部套一层透明的圆环，然后监听 mouseover 事件，获取
+                  到对应数据的系列序号 params.seriesIndex 或系列名称 params.seriesName，
+                  如果鼠标移到了扇形上，则先取消高亮之前的扇形（如果有）,再高亮当前扇形；
+                  如果鼠标移到了透明圆环上，则只取消高亮之前的扇形（如果有），不做任何高亮。
+
+          globalout： 当鼠标移动过快，直接划出图表区域时，有可能监听不到透明圆环的 mouseover，
+                  导致此前高亮没能取消，所以补充了对 globalout 的监听。
+              
+      *************************/
+
+      // 生成扇形的曲面参数方程，用于 series-surface.parametricEquation
+      function getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, h) {
+
+        // 计算
+        let midRatio = (startRatio + endRatio) / 2;
+        let startRadian = startRatio * Math.PI * 2;
+        let endRadian = endRatio * Math.PI * 2;
+        let midRadian = midRatio * Math.PI * 2;
+
+        // 如果只有一个扇形，则不实现选中效果。
+        if (startRatio === 0 && endRatio === 1) {
+          isSelected = false;
+        }
+
+        // 通过扇形内径/外径的值，换算出辅助参数 k（默认值 1/3）
+        k = typeof k !== 'undefined' ? k : 1 / 3;
+
+        // 计算选中效果分别在 x 轴、y 轴方向上的位移（未选中，则位移均为 0）
+        let offsetX = isSelected ? Math.cos(midRadian) * 0.1 : 0;
+        let offsetY = isSelected ? Math.sin(midRadian) * 0.1 : 0;
+
+        // 计算高亮效果的放大比例（未高亮，则比例为 1）
+        let hoverRate = isHovered ? 1.05 : 1;
+
+        // 返回曲面参数方程
+        return {
+          u: {
+            min: -Math.PI,
+            max: Math.PI * 3,
+            step: Math.PI / 32
+          },
+
+          v: {
+            min: 0,
+            max: Math.PI * 2,
+            step: Math.PI / 20
+          },
+
+          x: function (u, v) {
+            if (u < startRadian) {
+              return offsetX + Math.cos(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            if (u > endRadian) {
+              return offsetX + Math.cos(endRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            return offsetX + Math.cos(u) * (1 + Math.cos(v) * k) * hoverRate;
+          },
+
+          y: function (u, v) {
+            if (u < startRadian) {
+              return offsetY + Math.sin(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            if (u > endRadian) {
+              return offsetY + Math.sin(endRadian) * (1 + Math.cos(v) * k) * hoverRate;
+            }
+            return offsetY + Math.sin(u) * (1 + Math.cos(v) * k) * hoverRate;
+          },
+
+          z: function (u, v) {
+            if (u < -Math.PI * 0.5) {
+              return Math.sin(u);
+            }
+            if (u > Math.PI * 2.5) {
+              return Math.sin(u) * h * .1;
+            }
+            return Math.sin(v) > 0 ? 1 * h * .1 : -1;
+          }
+        }
+
+      }
+
+      // 生成模拟 3D 饼图的配置项
+      function getPie3D(pieData, internalDiameterRatio) {
+        let series = [];
+        let sumValue = 0;
+        let startValue = 0;
+        let endValue = 0;
+        let legendData = [];
+        let k = typeof internalDiameterRatio !== 'undefined' ? (1 - internalDiameterRatio) / (1 + internalDiameterRatio) : 1 / 3;
+
+        // 为每一个饼图数据，生成一个 series-surface 配置
+        for (let i = 0; i < pieData.length; i++) {
+
+          sumValue += pieData[i].value;
+
+          let seriesItem = {
+            name: typeof pieData[i].name === 'undefined' ? `series${i}` : pieData[i].name,
+            type: 'surface',
+            parametric: true,
+            wireframe: {
+              show: false
+            },
+            pieData: pieData[i],
+            pieStatus: {
+              selected: false,
+              hovered: false,
+              k: k
+            }
+          };
+
+          if (typeof pieData[i].itemStyle != 'undefined') {
+
+            let itemStyle = {};
+
+            typeof pieData[i].itemStyle.color != 'undefined' ? itemStyle.color = pieData[i].itemStyle.color : null;
+            typeof pieData[i].itemStyle.opacity != 'undefined' ? itemStyle.opacity = pieData[i].itemStyle.opacity : null;
+
+            seriesItem.itemStyle = itemStyle;
+          }
+          series.push(seriesItem);
+        }
+
+        // 使用上一次遍历时，计算出的数据和 sumValue，调用 getParametricEquation 函数，
+        // 向每个 series-surface 传入不同的参数方程 series-surface.parametricEquation，也就是实现每一个扇形。
+        for (let i = 0; i < series.length; i++) {
+          endValue = startValue + series[i].pieData.value;
+
+          series[i].pieData.startRatio = startValue / sumValue;
+          series[i].pieData.endRatio = endValue / sumValue;
+          series[i].parametricEquation = getParametricEquation(series[i].pieData.startRatio, series[i].pieData.endRatio, false, false, k, series[i].pieData.value);
+
+          startValue = endValue;
+
+          legendData.push(series[i].name);
+        }
+
+        // 补充一个透明的圆环，用于支撑高亮功能的近似实现。
+        series.push({
+          name: 'mouseoutSeries',
+          type: 'surface',
+          parametric: true,
+          wireframe: {
+            show: false
+          },
+          itemStyle: {
+            color: '#194a6a',
+            opacity: 0
+          },
+          parametricEquation: {
+            u: {
+              min: 0,
+              max: Math.PI * 2,
+              step: Math.PI / 20
+            },
+            v: {
+              min: 0,
+              max: Math.PI,
+              step: Math.PI / 20
+            },
+            x: function (u, v) {
+              return Math.sin(v) * Math.sin(u) + Math.sin(u);
+            },
+            y: function (u, v) {
+              return Math.sin(v) * Math.cos(u) + Math.cos(u);
+            },
+            z: function (u, v) {
+              return Math.cos(v) > 0 ? 0.1 : -0.1;
+            }
+          }
+        });
+
+        console.log(series);
+        // 准备待返回的配置项，把准备好的 legendData、series 传入。
+        let option = {
+          legend: {
+            data: legendData,
+            textStyle: {
+              color: '#fff'
+            },
+            orient: 'vertical',
+            right: 0,
+            top: 'center',
+            itemWidth: 15,
+            itemHeight: 12,
+            icon: ''
+          },
+          tooltip: {
+            formatter: params => {
+              if (params.seriesName !== 'mouseoutSeries') {
+                return `${params.seriesName}<br/><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${params.color};"></span>${option.series[params.seriesIndex].pieData.value}`;
+              }
+            }
+          },
+          label: {
+            textStyle: {
+              color: '#fff'
+            }
+          },
+          xAxis3D: {
+            min: -1,
+            max: 1
+          },
+          yAxis3D: {
+            min: -1,
+            max: 1
+          },
+          zAxis3D: {
+            min: -1,
+            max: 1
+          },
+          grid3D: {
+            show: false,
+            boxHeight: 12,
+            viewControl: {//3d效果可以放大、旋转等，请自己去查看官方配置
+              alpha: 30,
+              beta: 40,
+              rotateSensitivity: 0,
+              zoomSensitivity: 0,//放大
+              panSensitivity: 0,
+              autoRotate: false //旋转
+            },
+            postEffect: {//配置这项会出现锯齿，请自己去查看官方配置有办法解决 
+              enable: true,
+              bloom: {
+                enable: true,
+                bloomIntensity: 0.1
+              },
+              SSAO: {
+                enable: true,
+                quality: 'medium',
+                radius: 2
+              }
+            }
+          },
+          series: series
+        };
+        return option;
+      }
+
+      // 传入数据生成 option
+      var option = getPie3D(
+        [
+          {
+            name: 'aa',
+            value: 85,
+            itemStyle: {
+              color: '#175165'
+            }
+          }, {
+            name: 'bb',
+            value: 65,
+            itemStyle: {
+              color: '#1b54a4',
+            }
+          }, {
+            name: 'cc',
+            value: 45,
+            itemStyle: {
+              color: '#79c6ef'
+            }
+          }, {
+            name: 'dd',
+            value: 25,
+            itemStyle: {
+              color: '#f6ca5d'
+            }
+          }, {
+            name: 'ee',
+            value: 10,
+            itemStyle: {
+              color: '#f29653'
+            }
+          }
+        ], 0.65);
+
+      // 监听鼠标事件，实现饼图选中效果（单选），近似实现高亮（放大）效果。
+      let selectedIndex = '';
+      let hoveredIndex = '';
+
+      // 监听点击事件，实现选中效果（单选）
+      myChart.on('click', function (params) {
+        // 从 option.series 中读取重新渲染扇形所需的参数，将是否选中取反。
+        let isSelected = !option.series[params.seriesIndex].pieStatus.selected;
+        let isHovered = option.series[params.seriesIndex].pieStatus.hovered;
+        let k = option.series[params.seriesIndex].pieStatus.k;
+        let startRatio = option.series[params.seriesIndex].pieData.startRatio;
+        let endRatio = option.series[params.seriesIndex].pieData.endRatio;
+
+
+        // 如果之前选中过其他扇形，将其取消选中（对 option 更新）
+        if (selectedIndex !== '' && selectedIndex !== params.seriesIndex) {
+          option.series[selectedIndex].parametricEquation = getParametricEquation(option.series[selectedIndex].pieData.startRatio, option.series[selectedIndex].pieData.endRatio, false, false, k, option.series[selectedIndex].pieData.value);
+          option.series[selectedIndex].pieStatus.selected = false;
+        }
+
+        // 对当前点击的扇形，执行选中/取消选中操作（对 option 更新）
+        option.series[params.seriesIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[selectedIndex].pieData.value);
+        option.series[params.seriesIndex].pieStatus.selected = isSelected;
+
+        // 如果本次是选中操作，记录上次选中的扇形对应的系列号 seriesIndex
+        isSelected ? selectedIndex = params.seriesIndex : null;
+
+        // 使用更新后的 option，渲染图表
+        myChart.setOption(option);
+      });
+
+      // 监听 mouseover，近似实现高亮（放大）效果
+      myChart.on('mouseover', function (params) {
+
+        // 准备重新渲染扇形所需的参数
+        let isSelected;
+        let isHovered;
+        let startRatio;
+        let endRatio;
+        let k;
+
+        // 如果触发 mouseover 的扇形当前已高亮，则不做操作
+        if (hoveredIndex === params.seriesIndex) {
+          return;
+          // 否则进行高亮及必要的取消高亮操作
+        } else {
+
+          // 如果当前有高亮的扇形，取消其高亮状态（对 option 更新）
+          if (hoveredIndex !== '') {
+            // 从 option.series 中读取重新渲染扇形所需的参数，将是否高亮设置为 false。
+            isSelected = option.series[hoveredIndex].pieStatus.selected;
+            isHovered = false;
+            startRatio = option.series[hoveredIndex].pieData.startRatio;
+            endRatio = option.series[hoveredIndex].pieData.endRatio;
+            k = option.series[hoveredIndex].pieStatus.k;
+
+            // 对当前点击的扇形，执行取消高亮操作（对 option 更新）
+            option.series[hoveredIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[hoveredIndex].pieData.value);
+            option.series[hoveredIndex].pieStatus.hovered = isHovered;
+
+            // 将此前记录的上次选中的扇形对应的系列号 seriesIndex 清空
+            hoveredIndex = '';
+          }
+
+          // 如果触发 mouseover 的扇形不是透明圆环，将其高亮（对 option 更新）
+          if (params.seriesName !== 'mouseoutSeries') {
+            // 从 option.series 中读取重新渲染扇形所需的参数，将是否高亮设置为 true。
+            isSelected = option.series[params.seriesIndex].pieStatus.selected;
+            isHovered = true;
+            startRatio = option.series[params.seriesIndex].pieData.startRatio;
+            endRatio = option.series[params.seriesIndex].pieData.endRatio;
+            k = option.series[params.seriesIndex].pieStatus.k;
+
+            // 对当前点击的扇形，执行高亮操作（对 option 更新）
+            option.series[params.seriesIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[params.seriesIndex].pieData.value + 15);
+            option.series[params.seriesIndex].pieStatus.hovered = isHovered;
+
+            // 记录上次高亮的扇形对应的系列号 seriesIndex
+            hoveredIndex = params.seriesIndex;
+          }
+
+          // 使用更新后的 option，渲染图表
+          myChart.setOption(option);
+        }
+      });
+
+      // 修正取消高亮失败的 bug
+      myChart.on('globalout', function () {
+        if (hoveredIndex !== '') {
+          // 从 option.series 中读取重新渲染扇形所需的参数，将是否高亮设置为 true。
+          isSelected = option.series[hoveredIndex].pieStatus.selected;
+          isHovered = false;
+          k = option.series[hoveredIndex].pieStatus.k;
+          startRatio = option.series[hoveredIndex].pieData.startRatio;
+          endRatio = option.series[hoveredIndex].pieData.endRatio;
+
+          // 对当前点击的扇形，执行取消高亮操作（对 option 更新）
+          option.series[hoveredIndex].parametricEquation = getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, option.series[hoveredIndex].pieData.value);
+          option.series[hoveredIndex].pieStatus.hovered = isHovered;
+
+          // 将此前记录的上次选中的扇形对应的系列号 seriesIndex 清空
+          hoveredIndex = '';
+        }
+
+        // 使用更新后的 option，渲染图表
+        myChart.setOption(option);
+      });
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts17() { }
+
+    function echarts18() { }
+
+    function echarts19() { }
+
+    function echarts20() { }
+
+    function echarts100() {
+      var myChart = echarts.init(document.getElementById('echarts100'))
+      let angle = 0; //角度，用来做简单的动画效果的
+      var timerId;
+
+      var data = 75; //数值大小
+      var max = 100; //满刻度大小
+      var option = {
+        title:
+          [
+            {
+              text: data + '%',
+              x: 'center',
+              y: '38%',
+              textStyle: {
+                color: '#fff',
+                fontSize: 22,
+              },
+            }
+          ],
+        color: ["#fff", 'rgba(255,255,255,.4)', 'transparent'],
+        series: [
+          {
+            type: "pie",
+            startAngle: 90,
+            center: ["50%", "50%"],
+            radius: ["90%", "100%"],
+            hoverAnimation: false,
+            labelLine: {
+              show: false
+            },
+            data:
+              [
+                {
+                  name: "",
+                  value: data,
+                  itemStyle: {
+                    color: '#4bf3f9'
+                  },
+                },
+                { //画剩余的刻度圆环
+                  name: "",
+                  value: max - data,
+                  itemStyle: {
+                    color: "#00227d"
+                  },
+                },
+              ]
+          },
+          {
+            name: "ring",
+            type: 'custom',
+            coordinateSystem: "none",
+            renderItem: function (params, api) {
+              return {
+                type: 'arc',
+                shape: {
+                  cx: api.getWidth() / 2,
+                  cy: api.getHeight() / 2,
+                  r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.8,
+                  startAngle: (0 + -angle) * Math.PI / 180,
+                  endAngle: (360 + -angle) * Math.PI / 180
+                },
+                style: {
+                  stroke: "#728fe5",
+                  fill: "transparent",
+                  lineWidth: 1.5
+                },
+                silent: true
+              };
+            },
+            data: [0]
+          },
+        ]
+      }
+
+      // //获取圆上面某点的坐标(x0,y0表示坐标，r半径，angle角度)
+      // function getCirlPoint(x0, y0, r, angle) {
+      //   let x1 = x0 + r * Math.cos(angle * Math.PI / 180)
+      //   let y1 = y0 + r * Math.sin(angle * Math.PI / 180)
+      //   return {
+      //     x: x1,
+      //     y: y1
+      //   }
+      // }
+
+      // function draw() {
+      //   angle = angle + 3
+      //   myChart.setOption(option, true)
+      // }
+      // if (timerId) {
+      //   clearInterval(timerId);
+      // }
+      // timerId = setInterval(function () {
+      //   draw()
+      // }, 100);
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+
+    function echarts101() {
+      var myChart = echarts.init(document.getElementById('echarts101'))
+
+      var category = [
+        {
+          name: "集中式",
+          value: 376
+        }
+      ];
+      var total = 376; // 数据总数
+      var datas = [];
+      category.forEach(value => {
+        datas.push(value.value);
+      });
+      var option = {
+        xAxis: {
+          max: total,
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          }
+        },
+        grid: {
+          left: 0,
+          top: 0, // 设置条形图的边距
+          right: 0,
+          bottom: 0
+        },
+        yAxis: [{
+          type: "category",
+          inverse: false,
+          data: category,
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          }
+        }],
+        series:
+          [
+            {
+              // 内
+              type: "bar",
+              barWidth: 20,
+              legendHoverLink: false,
+              silent: true,
+              itemStyle: {
+                normal: {
+                  color: {
+                    type: "linear",
+                    x: 0,
+                    y: 0,
+                    x2: 1,
+                    y2: 0,
+                    colorStops: [
+                      {
+                        offset: 0,
+                        color: "#041f5a" // 0% 处的颜色
+                      },
+                      {
+                        offset: 1,
+                        color: "#45e7f5" // 100% 处的颜色
+                      }
+                    ]
+                  },
+                }
+              },
+              label: {
+                normal: {
+                  show: false,
+                  position: "left",
+                  formatter: "{b}",
+                  textStyle: {
+                    color: "#fff",
+                    fontSize: 14
+                  }
+                }
+              },
+              data: category,
+              z: 1,
+              animationEasing: "elasticOut"
+            },
+            {
+              // 分隔
+              type: "pictorialBar",
+              itemStyle: {
+                color: "#030620"
+              },
+              symbolRepeat: "fixed",
+              symbolMargin: 30,
+              symbol: "rect",
+              symbolClip: true,
+              symbolSize: [3, 25],
+              symbolPosition: "start",
+              symbolOffset: [1, -1],
+              symbolBoundingData: this.total,
+              data: category,
+              z: 2,
+              animationEasing: "elasticOut"
+            },
+            {
+              // 外边框
+              type: "pictorialBar",
+              symbol: "rect",
+              symbolBoundingData: total,
+              itemStyle: {
+                normal: {
+                  color: "none"
+                }
+              },
+              label: {
+                normal: {
+                  formatter: (params) => {
+                    var text = '{f|  ' + params.data + '}';
+                    return text;
+                  },
+                  rich: {
+                    f: {
+                      color: "#ffffff"
+                    }
+                  },
+                  position: ['91%', '30%'],
+                  distance: -35, // 向右偏移位置
+                  show: true
+                }
+              },
+              data: datas,
+              z: 20,
+              animationEasing: "elasticOut"
+            },
+            // {
+            //   name: "外框",
+            //   type: "bar",
+            //   barGap: "-120%", // 设置外框粗细
+            //   data: [total, total, total, total, total, total, total, total, total, total, total, total, total, total, total, total, total, total, total, total],
+            //   barWidth: 30,
+            //   itemStyle: {
+            //     normal: {
+            //       color: "transparent", // 填充色
+            //       barBorderColor: "#889ef0", // 边框色
+            //       barBorderWidth: 2, // 边框宽度
+            //       // barBorderRadius: 0, //圆角半径
+            //       label: {
+            //         // 标签显示位置
+            //         show: false,
+            //         position: "top" // insideTop 或者横向的 insideLeft
+            //       }
+            //     }
+            //   },
+            //   z: 50
+            // }
+          ]
+      };
+
+
+
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    echarts1()
+    echarts2()
+    echarts3()
+    echarts4()
+    echarts5()
+    echarts6()
+    echarts7()
+    echarts8()
+    echarts9()
+    echarts10()
+    echarts11()
+    echarts12()
+    echarts13()
+    echarts14()
+    echarts15()
+    echarts16()
+    echarts17()
+    echarts18()
+    echarts19()
+    echarts100()
+    echarts101()
+
+  })
+</script>
+
+
+</html>

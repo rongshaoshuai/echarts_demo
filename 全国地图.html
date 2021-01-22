@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #echarts1 {
+      width: 1000px;
+      height: 800px;
+      margin: 0 auto;
+      margin-top: 40px
+    }
+
+    body {
+      background: #060c3c;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="echarts1">
+
+  </div>
+
+</body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="json/china.js"></script>
+<script>
+  function randomData() {
+    return Math.round(Math.random() * 500)
+  }
+  function echarts1() {
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('echarts1'))
+    var dataMap = [
+      { name: '北京市', value: randomData() },
+      { name: '天津市', value: randomData() },
+      { name: '上海市', value: randomData() },
+      { name: '重庆市', value: randomData() },
+      { name: '河北省', value: randomData() },
+      { name: '河南省', value: randomData() },
+      { name: '云南省', value: randomData() },
+      { name: '辽宁省', value: randomData() },
+      { name: '黑龙江省', value: randomData() },
+      { name: '湖南省', value: randomData() },
+      { name: '安徽省', value: randomData() },
+      { name: '山东省', value: randomData() },
+      { name: '新疆维吾尔自治区', value: randomData() },
+      { name: '江苏省', value: randomData() },
+      { name: '浙江省', value: randomData() },
+      { name: '江西省', value: randomData() },
+      { name: '湖北省', value: randomData() },
+      { name: '广西壮族自治区', value: randomData() },
+      { name: '甘肃省', value: randomData() },
+      { name: '山西省', value: randomData() },
+      { name: '内蒙古自治区', value: randomData() },
+      { name: '陕西省', value: randomData() },
+      { name: '吉林省', value: randomData() },
+      { name: '福建省', value: randomData() },
+      { name: '贵州省', value: randomData() },
+      { name: '广东省', value: randomData() },
+      { name: '青海省', value: randomData() },
+      { name: '西藏自治区', value: randomData() },
+      { name: '四川省', value: randomData() },
+      { name: '宁夏回族自治区', value: randomData() },
+      { name: '海南省', value: randomData() },
+      { name: '台湾省', value: randomData() },
+      { name: '南海诸岛', value: randomData() },
+    ]
+    // 需要在页面上直接标记出来的城市
+    var specialMap = []
+    // 对dataMap进行处理，使其可以直接在页面上展示
+    for (var i = 0; i < specialMap.length; i++) {
+      for (var j = 0; j < dataMap.length; j++) {
+        if (specialMap[i] == dataMap[j].name) {
+          dataMap[j].selected = true
+          break
+        }
+      }
+    }
+    console.log(dataMap);
+    var option = {
+      title: {//标题
+        text: '各省份近七日舆情分布',
+        left: 'center',
+        top: 30,
+        textStyle: { color: '#67bffb', fontWeight: 'normal', fontSize: 16 },
+      },
+      tooltip: {
+        show: false,
+        formatter: function (params) {
+          var info = '<p style="font-size:18px">' + params.name
+          return info
+        },
+        backgroundColor: '#ff7f50', //提示标签背景颜色
+        textStyle: { color: '#fff' }, //提示标签字体颜色
+      },
+      //左侧小导航图标
+      visualMap: {
+        show: true,
+        x: 50,
+        y: 300,
+        splitList: [
+          { start: 750 },
+          { start: 600, end: 749 },
+          { start: 450, end: 599 },
+          { start: 300, end: 449 },
+          { start: 150, end: 299 },
+          { start: 0, end: 149 },
+        ],
+        textStyle: {
+          color: '#67bffb',
+        },
+        color: [
+          '#bf1e16',
+          '#fc2f25',
+          '#fa613d',
+          '#fa7b3d',
+          '#fa9b3d',
+          '#ffb872',
+        ],
+      },
+      series: [
+        {
+          name: 'china',
+          type: 'map',
+          mapType: 'china',
+          label: {
+            normal: {
+              show: true, //显示省份标签
+            },
+            emphasis: {
+              show: true, //对应的鼠标悬浮效果
+            },
+          },
+          data: dataMap,
+        },
+      ],
+    }
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.clear()
+    myChart.setOption(option)
+    window.addEventListener('resize', function () {
+      myChart.resize()
+    })
+  }
+  echarts1()
+</script>
+
+</html>

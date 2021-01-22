@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大屏整理</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #060c3c;
+    }
+
+    .box {
+      width: 500px;
+      height: 300px;
+      float: left;
+    }
+
+    .box_ {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+      查找对应的图表写法时,
+      可以根据标签(f12找到对应id),比如要找echarts1对应图表,ctrl+f查找echarts1
+      即可找到对应的js代码
+  -->
+  <div class="box_">
+    <div class="box" id="echarts1"></div>
+    <div class="box" id="echarts2"></div>
+    <div class="box" id="echarts3"></div>
+    <div class="box" id="echarts4"></div>
+    <div class="box" id="echarts5"></div>
+  </div>
+
+  <div class="box_">
+    <div class="box" id="echarts6"></div>
+    <div class="box" id="echarts7"></div>
+    <div class="box" id="echarts8"></div>
+    <div class="box" id="echarts9"></div>
+    <div class="box" id="echarts10"></div>
+  </div>
+
+  <div class="box_">
+    <div class="box" id="echarts11"></div>
+  </div>
+</body>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/echarts.min.js"></script>
+
+<script>
+  $(function () {
+    var myTime
+    var myTime1
+    var myTime2
+    var myTime3
+    function echarts1() {
+      var myChart = echarts.init(document.getElementById('echarts1'))
+      var option = {
+        color: ['#04a5f9'],//图表的柱子颜色,设置颜色渐变在series.itemStyle
+        tooltip: {//提示框
+          trigger: 'axis',
+          axisPointer: {
+            type: 'line',
+          },
+          transitionDuration: 0,
+          //模板变量
+          // formatter: '{a}{b}{c}{d}',
+          //自定义的html
+          // formatter: function (params) {
+          //   var html_=''
+          //   //do sth
+          //   return html_
+          // }
+        },
+        legend: {//图例
+          textStyle: {
+            color: '#fff',
+          },
+          top: 10
+        },
+        grid: {//边距
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            //x轴数据
+            data: ['1月', '2月', '3月', '4月', '5月', '6月'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '数量',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#66687a' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '数量',
+            type: 'bar',
+            barWidth: '15',//柱的宽度
+            animationDuration: 3000,
+            animationDelay: 300,
+            //y轴数据
+            data: [10, 20, 30, 40, 50, 60],
+            itemStyle: {
+              // 柱子颜色渐变
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#1974e2' },
+                { offset: 0.5, color: '#0f8ced' },
+                { offset: 1, color: '#04a5f9' },
+              ]),
+            }
+          },
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+
+      //循环自动提示
+      setTimeout(() => {
+        clearInterval(myTime)
+        myswipe()
+      }, 30)
+      var index = 0
+
+      var myswipe = function () {
+        myTime = setInterval(function () {
+          myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: index,
+          })
+          index++
+          if (index > option.series[0].data.length) {
+            index = 0
+          }
+        }, 5000)
+      }
+      document.getElementById('echarts1').onmouseover = function () {
+        clearInterval(myTime)
+      }
+      document.getElementById('echarts1').onmouseout = function () {
+        clearInterval(myTime)
+        myswipe()
+      }
+    }
+    function echarts2() {
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('echarts2'))
+      // 指定图表的配置项和数据
+      var option = {
+        color: ['#fdbb09', '#2e69ff', '#42b8fe'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          }, transitionDuration: 0,
+        },
+        legend: {
+          textStyle: {
+            color: '#fff',
+          },
+          top: 10
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: [
+              '邢桐',
+              '恒源',
+              '临盘',
+              '临邑',
+              '临南',
+              '德平',
+              '林子',
+              '兴隆',
+              '孟寺',
+              '宿安',
+            ],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              // 是否0刻度起点
+              onZero: false,
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              // rotate: -30,
+              color: '#8f909d',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#8f909d' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            // 分割线
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#66687a' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            // 分割线
+            splitLine: {
+              show: false,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+
+          {
+            name: '质量安全监测点数量',
+            type: 'bar',
+            barWidth: 14,
+            stack: '劳动力资源',
+            data: [150, 232, 201, 154, 190, 330, 410, 330, 310, 330],
+            animationDuration: 3000,
+            animationDelay: 200,
+          },
+          {
+            name: '溯源码打印次数',
+            type: 'bar',
+            barWidth: 14,
+            stack: '劳动力资源',
+            data: [150, 232, 201, 154, 190, 330, 410, 330, 310, 154],
+            animationDuration: 3000,
+            animationDelay: 200,
+          }
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+      //循环自动提示
+      setTimeout(() => {
+        clearInterval(myTime1)
+        myswipe()
+      }, 30)
+      var index = 0
+
+      var myswipe = function () {
+        myTime1 = setInterval(function () {
+          myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: index,
+          })
+          index++
+          if (index > option.series[0].data.length) {
+            index = 0
+          }
+        }, 5000)
+      }
+      document.getElementById('echarts2').onmouseover = function () {
+        clearInterval(myTime1)
+      }
+      document.getElementById('echarts2').onmouseout = function () {
+        clearInterval(myTime1)
+        myswipe()
+      }
+    }
+    function echarts3() {
+      var myChart = echarts.init(document.getElementById('echarts3'))
+      var option = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'none',
+          },
+          transitionDuration: 0,
+        },
+        xAxis: {
+          data: ['类1', '类2', '类3', '类4', '类5', '类6',],
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: {//x轴的文字样式
+            color: '#b1dfff',
+            align: 'center',
+            interval: 0,
+          },
+        },
+        yAxis: {
+          splitLine: {//分割线
+            show: true,
+            lineStyle: {
+              color: '#5c5f7b',
+            },
+          },
+          axisTick: { show: false },
+          axisLine: { show: false },
+          axisLabel: { show: false },
+        },
+        color: ['#2683df'],
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        series: [
+          {
+            name: '面积',
+            type: 'pictorialBar',
+            // barCategoryGap: '10%',
+            barWidth: 60,
+            // symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
+            symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+            itemStyle: {
+              opacity: 0.95,
+            },
+            emphasis: {
+              itemStyle: {
+                opacity: 1,
+              },
+            },
+            data: [100, 110, 120, 130, 140, 150, 160],
+            z: 10,
+            animationDuration: 3000,
+            animationDelay: 200,
+            label: {
+              show: true,
+              position: 'top',
+              formatter: function (params) {
+                return params.data + "公顷";
+              },
+            },
+          },
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+
+      //循环自动提示
+      setTimeout(() => {
+        clearInterval(myTime2)
+        myswipe()
+      }, 30)
+      var index = 0
+
+      var myswipe = function () {
+        myTime2 = setInterval(function () {
+          myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: index,
+          })
+          index++
+          if (index > option.series[0].data.length) {
+            index = 0
+          }
+        }, 5000)
+      }
+      document.getElementById('echarts3').onmouseover = function () {
+        clearInterval(myTime2)
+      }
+      document.getElementById('echarts3').onmouseout = function () {
+        clearInterval(myTime2)
+        myswipe()
+      }
+    }
+    function echarts4() {
+      var myChart = echarts.init(document.getElementById('echarts4'))
+      var option = {
+        tooltip: {
+          trigger: 'axis',
+          transitionDuration: 0,
+        },
+        legend: {
+          top: 5,
+          right: 55,
+          itemGap: 30,
+          textStyle: {
+            color: '#fff',
+          },
+          itemWidth: 15,
+          itemHeight: 15,
+        },
+        grid: {
+          top: '20%',
+          left: '8%',
+          right: '8%',
+          bottom: '5%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['临邑天宝弘安商贸有限公司', '临邑天宝弘安商贸有限公司', '临邑天宝弘安商贸有限公司', '临邑天宝弘安商贸有限公司', '临邑天宝弘安商贸有限公司', '临邑天宝弘安商贸有限公司', '临邑天宝弘安商贸有限公司'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                color: '#66687a',
+                width: 2,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              interval: 0,
+              formatter: function (params) {
+                var datanum = 3;
+                var strs = params.split('');
+                var str = '';
+                for (var i = 0, s; s = strs[i++];) {
+                  str += s;
+                  if (!(i % datanum)) str += '\n';
+                }
+                return str
+              }
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '单位:个',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#66687a' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '发码',
+            type: 'bar',
+            barWidth: '15',
+            animationDuration: 3000,
+            animationDelay: 300,
+            data: [120, 132, 101, 134, 90, 230, 210],
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#90e2f7' },
+                { offset: 0.5, color: '#6db9fb' },
+                { offset: 1, color: '#468cff' },
+              ]),
+            },
+          },
+          {
+            name: '扫码',
+            type: 'bar',
+            barWidth: '15',
+            data: [320, 332, 301, 334, 390, 330, 320],
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#fcc50e' },
+                { offset: 0.5, color: '#f2a923' },
+                { offset: 1, color: '#ea9539' },
+              ]),
+            },
+          }
+        ],
+      }
+
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+
+      //循环自动提示
+      setTimeout(() => {
+        clearInterval(myTime3)
+        myswipe()
+      }, 30)
+      var index = 0
+
+      var myswipe = function () {
+        myTime3 = setInterval(function () {
+          myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: index,
+          })
+          index++
+          if (index > option.series[0].data.length) {
+            index = 0
+          }
+        }, 5000)
+      }
+      document.getElementById('echarts4').onmouseover = function () {
+        clearInterval(myTime3)
+      }
+      document.getElementById('echarts4').onmouseout = function () {
+        clearInterval(myTime3)
+        myswipe()
+      }
+    }
+
+    echarts1()
+    echarts2()
+    echarts3()
+    echarts4()
+  })
+</script>
+
+<script>
+  $(function () {
+    var myTime
+    function echarts5() {
+      var myChart = echarts.init(document.getElementById('echarts5'))
+      var option = {
+        //图表的颜色
+        color: ['#00f7ef', '#ff8efe'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+          data: [//图例的形状
+            { name: '乡村户数（户）', icon: 'rect' },
+            { name: '年末耕地总面积（万亩）', icon: 'circle' },
+          ],
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              // rotate: -30,
+              color: '#8f909d',
+            },
+          },
+        ],
+        yAxis: [
+          // 左边的y轴
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#8f909d' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+          //右边的y轴
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#66687a' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: false,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '乡村户数（户）',
+            type: 'bar',
+            barWidth: 8,
+            stack: '劳动力资源',
+            data: [934, 1290, 1330, 1320, 820, 932, 901],
+            animationDuration: 3000,
+            animationDelay: 200,
+          },
+          {
+            name: '年末耕地总面积（万亩）',
+            data: [534, 890, 930, 1000, 420, 332, 501],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            symbol: 'none',
+            // 双y轴,右边的y轴需要设置索引
+            yAxisIndex: 1,
+          }
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+    function echarts6() {
+      var myChart = echarts.init(document.getElementById('echarts6'))
+      var option = {
+        color: ['#00f7ef', '#ff8efe'],  //图表的颜色
+        tooltip: {//提示框
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {//图例
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+        },
+        grid: {//边距
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            // x轴数据
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              // rotate: -30,
+              color: '#8f909d',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#8f909d' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '年末耕地总面积（万亩）',
+            //y轴数据
+            data: [534, 890, 930, 1000, 420, 332, 501],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            symbol: 'emptyCircle',//标记点类型,none表示没有标记点
+            symbolSize: 6,//标记点大小
+            smooth: false,//是否开启平滑处理
+          }
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+
+      //循环自动提示
+      setTimeout(() => {
+        clearInterval(myTime)
+        myswipe()
+      }, 30)
+      var index = 0
+
+      var myswipe = function () {
+        myTime = setInterval(function () {
+          myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: index,
+          })
+          index++
+          if (index > option.series[0].data.length) {
+            index = 0
+          }
+        }, 5000)
+      }
+      document.getElementById('echarts1').onmouseover = function () {
+        clearInterval(myTime)
+      }
+      document.getElementById('echarts1').onmouseout = function () {
+        clearInterval(myTime)
+        myswipe()
+      }
+    }
+    function echarts7() {
+      var myChart = echarts.init(document.getElementById('echarts7'))
+      var option = {
+        //图表的颜色
+        color: ['#00f7ef', '#ff8efe'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+          data: [//图例的形状
+            { name: '乡村户数（户）', icon: 'rect' },
+            { name: '年末耕地总面积（万亩）', icon: 'circle' },
+          ],
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              // rotate: -30,
+              color: '#8f909d',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#8f909d' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '年末耕地总面积（万亩）',
+            data: [534, 890, 930, 1000, 820, 632, 501],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            symbol: 'none',//标记点类型,none表示没有标记点
+            symbolSize: 6,//标记点大小
+            smooth: true,//是否开启平滑处理
+          }
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+    function echarts8() {
+      var myChart = echarts.init(document.getElementById('echarts8'))
+      var option = {
+        //图表的颜色
+        color: ['#00f7ef', '#ff8efe'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+          data: [//图例的形状
+            { name: '乡村户数（户）', icon: 'rect' },
+            { name: '年末耕地总面积（万亩）', icon: 'circle' },
+          ],
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              // rotate: -30,
+              color: '#8f909d',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#8f909d' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '年末耕地总面积（万亩）',
+            data: [534, 890, 930, 1000, 820, 632, 501],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            symbol: 'none',//标记点类型,none表示没有标记点
+            smooth: true,//是否开启平滑处理
+
+            areaStyle: { //区域填充
+              color: {//颜色渐变
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                  offset: 0, color: 'red' // 0% 处的颜色
+                }, {
+                  offset: 1, color: 'blue' // 100% 处的颜色
+                }],
+                global: false // 缺省为 false
+              },
+              // color:'#66687a'//单一颜色
+            }
+          }
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+    function echarts9() {
+      var myChart = echarts.init(document.getElementById('echarts9'))
+      var option = {
+        //图表的颜色
+        color: ['#00f7ef', '#ff8efe'],
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+          },
+          transitionDuration: 0,
+        },
+        legend: {
+          textStyle: {//图例文字样式
+            color: '#fff',
+          },
+        },
+        grid: {
+          left: '1%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,// 是否0刻度起点
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              // rotate: -30,
+              color: '#8f909d',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#8f909d' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '邮件营销',
+            type: 'line',
+            stack: '总量',
+            areaStyle: {},
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: '联盟广告',
+            type: 'line',
+            stack: '总量',
+            areaStyle: {},
+            data: [220, 182, 191, 234, 290, 330, 310]
+          },
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+
+    function echarts10() {
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('echarts10'))
+      // 指定图表的配置项和数据
+      var option = {
+        color: ['#ac95fe', '#86d6f8', '#f8ba13', '#6cfdea'],
+        tooltip: {
+          trigger: 'axis',
+          transitionDuration: 0,
+        },
+        grid: {
+          left: '5%',
+          right: '5%',
+          bottom: '5%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            boundaryGap: false,
+            data: [0, 4, 8, 12, 16, 20, 24],
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#4c516f',
+              },
+              onZero: true,
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '单位:',
+            axisLine: {
+              lineStyle: {
+                color: '#4c516f',
+              },
+              onZero: true,
+            },
+            axisLabel: { color: '#66687a' },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            // 分割线
+            splitLine: {
+              show: false,
+            },
+          },
+        ],
+        series: [
+          {
+            name: '温度',
+            type: 'line',
+            smooth: true,
+            data: [5, 10, 20, 25, 16, 18, 6],
+            symbol: 'none',
+            markPoint: {
+              data: [
+                { type: 'max', name: '最大值', itemStyle: { color: '#d583ff' } },
+                { type: 'min', name: '最小值', itemStyle: { color: '#30d18b' } },
+              ],
+            },
+            markLine: {
+              data: [
+                {
+                  type: 'average',
+                  name: '平均值',
+                  lineStyle: { type: 'dotted' },
+                  label: {
+                    position: 'middle',
+                    formatter: '平均值:{c}',
+                  },
+                  symbol: 'none',
+                },
+              ],
+            },
+            areaStyle: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: '#966dfe', // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: '#262263', // 100% 处的颜色
+                  },
+                ],
+                global: false, // 缺省为 false
+              },
+            },
+          },
+        ],
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+    echarts5()
+    echarts6()
+    echarts7()
+    echarts8()
+    echarts9()
+    echarts10()
+  })
+</script>
+
+<script>
+  function echarts11() {
+    var myChart = echarts.init(document.getElementById('echarts11'))
+    var option = {
+      color: ['#00f0ff', '#0090ff', '#1b51ff', '#2a00ff', '#ffd074'],
+      tooltip: {
+        trigger: 'item',
+        // 饼图提示框写在series.label里面
+        formatter: function (params) {
+          return ''
+        },
+        transitionDuration: 0,
+      },
+      legend: {
+        type: 'scroll',
+        orient: 'horizontal',
+        left: 10,
+        textStyle: {
+          color: '#fff',
+        },
+      },
+      series: [
+        {
+          name: '种植面积',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center',
+            // 饼图的提示框
+            formatter: '{b}\n{a}:{c}\n占比:{d}%',
+            fontSize: 12,
+          },
+          animationDelay: 1000,
+          animationDuration: 3000,
+          animationEasing: 'cubicInOut',
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '16',
+              fontWeight: 'bold',
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          // 饼图的数据格式
+          data: [
+            { value: 335, name: '小麦' },
+            { value: 310, name: '玉米' },
+            { value: 234, name: '高梁' },
+            { value: 135, name: '大豆' },
+            { value: 1548, name: '蔬菜' },
+          ],
+        },
+      ],
+    }
+
+    myChart.clear()
+    myChart.setOption(option)
+    window.addEventListener('resize', function () {
+      myChart.resize()
+    })
+    pieActive(myChart, option)
+    myChart.on('mouseover', () => {
+      clearInterval(pieTime)
+      myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+        dataIndex: index3,
+      })
+    })
+    myChart.on('mouseout', () => {
+      pieActive(myChart, option)
+    })
+  }
+
+  echarts11()
+
+  function pieActive(myChart, option) {
+    index3 = -1 //高亮所在下标
+    let dataLength = option.series[0].data.length // 当前饼图有多少个扇形
+    // 用定时器控制饼图高亮
+    pieTime = setInterval(() => {
+      // 清除之前的高亮
+      myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+        dataIndex: index3,
+      })
+      index3 = (index3 + 1) % dataLength
+      // 当前下标高亮
+      myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: index3,
+      })
+      if (index3 > dataLength) {
+        index3 = 0
+      }
+    }, 5000)
+  }
+
+</script>
+
+</html>

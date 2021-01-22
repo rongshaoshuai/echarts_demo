@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  #container {
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;
+    margin-top: 40px
+  }
+
+  body {
+    background: #060c3c;
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script>
+    $(function () {
+      var myChart = echarts.init(document.getElementById('container'));
+      var data = [
+        { name: '鲁庄', value: 12 },
+      ]
+      $.get('/json/BiYangMap.json', function (geoJson) {
+        echarts.registerMap('BiYangMap', geoJson, {});
+
+        //引入散点坐标数据
+
+        var geoCoordMap = {
+          '鲁庄': [113.288856, 32.724507]
+        }
+        //将数据显示和坐标对应上
+        var convertData = function (data) {
+          var res = [];
+          for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+              res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+              });
+            }
+          }
+          return res;
+        };
+
+        var option = {
+          //backgroundColor:'#000b3a',//地图背景颜色
+          tooltip: {
+            trigger: 'item',
+          },
+          geo: {
+            map: 'BiYangMap',
+            roam: true, //开启鼠标缩放和漫游
+            zoom: 1, //地图缩放级别
+            layoutCenter: ["50%", "50%"], //地图位置
+            silent: false,//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。
+            label: {
+              normal: {
+                show: true,
+                textStyle: {
+                  fontSize: 12,
+                  fontWeight: 'normal',
+                  color: '#fff'
+                }
+              },
+              emphasis: {
+                show: true
+              }
+            },
+            itemStyle: {
+              normal: {
+                borderColor: '#1cccff',//地图边界线的颜色
+                areaColor: '#042c83',//地图整体区域的颜色
+                borderWidth: 1,
+                shadowColor: '#276fce',
+                shadowBlur: 15,
+                shadowOffsetX: 0,
+                shadowOffsetY: 15,
+              },
+              emphasis: {
+                areaColor: '#276fce'//鼠标滑过的颜色
+              }
+            },
+          },
+
+          //（1）series 的类型为散点图 scatter
+
+          series: [
+            {
+              name: '坐标',            // series名称
+              type: 'scatter',          // series图表类型
+              coordinateSystem: 'geo',  // series坐标系类型
+              symbol: 'image://img/dw.svg',
+              data: convertData(data),  // series数据内容
+              label: {
+                normal: {
+                  formatter: '{b}',
+                  position: 'right',
+                  show: false
+                },
+                emphasis: {
+                  show: false
+                }
+              },
+              tooltip: {
+                show: false
+              },
+              symbolSize: 20,//散点大小设置
+              type: 'effectScatter',
+              itemStyle: {
+                normal: {
+                  //color: 'purple',
+                }
+              },
+            }
+          ]
+        };
+
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+          alert(params.name)
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
