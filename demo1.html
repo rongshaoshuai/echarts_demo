@@ -2784,7 +2784,17 @@
       })
     }
 
-    function echarts17() { }
+    function echarts17() {
+      var myChart = echarts.init(document.getElementById('echarts16'))
+
+
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
 
     function echarts18() { }
 
@@ -3089,7 +3099,7 @@
     echarts14()
     echarts15()
     echarts16()
-    echarts17()
+    // echarts17()
     echarts18()
     echarts19()
     echarts100()
