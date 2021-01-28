@@ -6,8 +6,9 @@
   <title>3D词云</title>
   <style>
     .wordCloud__tagBall {
-      margin: 50px auto;
       position: relative;
+      margin: 50px auto;
+      overflow: hidden;
     }
 
     .wordCloud__tag {
@@ -55,9 +56,13 @@
       var height = 300
       var contentEle = []
       var data = ['云图', '是个啥', '他啥都不是', '他就是词云', '就是他呆子', '傻子和疯子', '营养快线', '哈哈哈到家', '瑞士军刀', 'DW情侣对表', '清风抽纸', '这一刻更清晰', '债券评级', '呵呵旧宫style', '云图', '是个啥', '他啥都不是', '他就是词云', '就是他呆子', '傻子和疯子', '营养快线', '哈哈哈到家', '瑞士军刀', 'DW情侣对表', '清风抽纸', '这一刻更清晰', '债券评级', '呵呵旧宫style']
+
       var direction = '-1'
+
       var speed = 3000
+
       var color = ['#2D4DB6', '#04B67C', '#D1AF07', '#E27914', '#CB4A4D', '#B02690']
+
       function innit() {
         const RADIUSX = (width - 50) / 2
         const RADIUSY = (height - 50) / 2
@@ -79,12 +84,14 @@
         }
         animate()
       }
+
       function animate() {
         rotateX()
         rotateY()
         move()
         window.requestAnimationFrame(animate)
       }
+
       function rotateX() {
         const angleX = ['-1', '1'].includes(direction)
           ? Math.PI / Infinity
@@ -117,6 +124,7 @@
           }
         })
       }
+
       function move() {
         const CX = width / 2
         const CY = height / 2
@@ -143,9 +151,11 @@
           }
         })
       }
+
       function handleRotate(value) {
         direction = value
       }
+
       function handleSpeed(value) {
         const speedObj = {
           fast: -50,
@@ -156,6 +166,7 @@
           speed = 50
         }
       }
+
       function init() {
         var html_ = ''
         for (var i = 0; i < data.length; i++) {
@@ -202,7 +213,7 @@
       $('.wordCloud__tagBall').on('mouseleave', function () {
         myval = setInterval(() => {
           init()
-        }, 10)
+        }, 20)
       })
       $('body').on('click', 'span', function () {
         console.log($(this)[0].innerHTML);

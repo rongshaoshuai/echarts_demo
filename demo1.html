@@ -216,6 +216,9 @@
   <div class="box_">
     <div class="box" id="echarts15"></div>
     <div class="box" id="echarts16"></div>
+
+  </div>
+  <div class="box_">
     <div class="box" id="echarts17"></div>
     <div class="box" id="echarts18"></div>
     <div class="box" id="echarts19"></div>
@@ -2784,24 +2787,6 @@
       })
     }
 
-    function echarts17() {
-      var myChart = echarts.init(document.getElementById('echarts16'))
-
-
-
-      myChart.clear()
-      myChart.setOption(option)
-      window.addEventListener('resize', function () {
-        myChart.resize()
-      })
-    }
-
-    function echarts18() { }
-
-    function echarts19() { }
-
-    function echarts20() { }
-
     function echarts100() {
       var myChart = echarts.init(document.getElementById('echarts100'))
       let angle = 0; //角度，用来做简单的动画效果的
@@ -2905,7 +2890,6 @@
         myChart.resize()
       })
     }
-
 
     function echarts101() {
       var myChart = echarts.init(document.getElementById('echarts101'))
@@ -3099,14 +3083,455 @@
     echarts14()
     echarts15()
     echarts16()
-    // echarts17()
-    echarts18()
-    echarts19()
     echarts100()
     echarts101()
 
   })
 </script>
 
+<script>
+  $(function () {
+    function echarts17() {
+      var myChart = echarts.init(document.getElementById('echarts17'))
+
+      var option = {
+        color: ["#36a1f6", "#37d9ea"],
+        grid: {
+          containLabel: true,
+          left: 20,
+          right: 20,
+          bottom: 10,
+          top: 40
+        },
+        xAxis: {
+          axisLabel: {
+            color: "#889ef0",
+            fontSize: 14,
+            interval: 0
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#384267",
+              width: 1
+            },
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#3d456c",
+              width: 1,
+              type: "solid"
+            },
+            show: true
+          },
+          data: ["1月", "2月", "3月", "4月", "5月"],
+          type: "category"
+        },
+        yAxis: {
+          axisLabel: {
+            color: "#889ef0",
+            fontSize: 14
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#384267",
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: "#1a1f3e",
+              type: "solid"
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#3d456c",
+              width: 1,
+              type: "solid"
+            },
+            show: true
+          },
+        },
+        series: [{
+          data: [200, 85, 112, 275, 305],
+          type: "bar",
+          barWidth: 22,
+          itemStyle: {
+            color: {
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              type: "linear",
+              global: false,
+              colorStops: [{
+                offset: 0,
+                color: "#36a1f6"
+              }, {
+                offset: 1,
+                color: "#37d9ea"
+              }]
+            }
+          },
+          label: {
+            show: true,
+            position: "top",
+            distance: 10,
+            color: "#fff"
+          }
+        }, {
+          data: [1, 1, 1, 1, 1, 1, 1, 1],
+          type: "pictorialBar",
+          symbol: "diamond",
+          symbolOffset: [0, "50%"],
+          symbolSize: [22, 8],
+          itemStyle: {
+            color: '#37d9ea'
+          }
+        }, {
+          data: [200, 85, 112, 275, 305],
+          type: "pictorialBar",
+          symbolPosition: "end",
+          symbol: "diamond",
+          symbolOffset: [0, "-50%"],
+          symbolSize: [22, 8],
+          zlevel: 2,
+          itemStyle: {
+            color: '#37d9ea'
+          }
+        },]
+      }
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts18() {
+      var myChart = echarts.init(document.getElementById('echarts18'))
+
+      const CubeLeft = echarts.graphic.extendShape({
+        shape: {
+          x: 0,
+          y: 0
+        },
+        buildPath: function (ctx, shape) {
+          const xAxisPoint = shape.xAxisPoint
+          const c0 = [shape.x, shape.y]
+          const c1 = [shape.x - 10, shape.y - 10]
+          const c2 = [xAxisPoint[0] - 10, xAxisPoint[1] - 10]
+          const c3 = [xAxisPoint[0], xAxisPoint[1]]
+          ctx.moveTo(c0[0], c0[1]).lineTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).closePath()
+        }
+      })
+      const CubeRight = echarts.graphic.extendShape({
+        shape: {
+          x: 0,
+          y: 0
+        },
+        buildPath: function (ctx, shape) {
+          const xAxisPoint = shape.xAxisPoint
+          const c1 = [shape.x, shape.y]
+          const c2 = [xAxisPoint[0], xAxisPoint[1]]
+          const c3 = [xAxisPoint[0] + 22, xAxisPoint[1] - 6]
+          const c4 = [shape.x + 22, shape.y - 6]
+          ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath()
+        }
+      })
+      const CubeTop = echarts.graphic.extendShape({
+        shape: {
+          x: 0,
+          y: 0
+        },
+        buildPath: function (ctx, shape) {
+          const c1 = [shape.x, shape.y]
+          const c2 = [shape.x + 22, shape.y - 6]
+          const c3 = [shape.x + 12, shape.y - 16]
+          const c4 = [shape.x - 10, shape.y - 10]
+          ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath()
+        }
+      })
+      echarts.graphic.registerShape('CubeLeft', CubeLeft)
+      echarts.graphic.registerShape('CubeRight', CubeRight)
+      echarts.graphic.registerShape('CubeTop', CubeTop)
+
+      const VALUE = [2012, 1230, 3790, 2349, 1654]
+
+      var option = {
+        grid: {
+          left: 10,
+          right: 10,
+          bottom: '5%',
+          top: '5%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          data: ['德州', '德城区', '陵城区', '禹城市', '乐陵市'],
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#3d456c',
+            }
+          },
+          axisTick: {
+            show: false,
+            length: 9,
+            alignWithLabel: true,
+            lineStyle: {
+              color: '#7DFFFD'
+            }
+          },
+          axisLabel: {
+            fontSize: 14,
+            color: "#889ef0",
+          }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            lineStyle: {
+              color: "#3d456c",
+              width: 1,
+              type: "solid"
+            },
+          },
+          splitLine: {
+            lineStyle: {
+              color: "#1a1f3e",
+              type: "solid"
+            }
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            fontSize: 14,
+            color: "#889ef0",
+          },
+        },
+        series: [
+          {
+            type: 'custom',
+            renderItem: (params, api) => {
+              const location = api.coord([api.value(0), api.value(1)])
+              return {
+                type: 'group',
+                children: [{//柱子左面
+                  type: 'CubeLeft',
+                  shape: {
+                    api,
+                    xValue: api.value(0),
+                    yValue: api.value(1),
+                    x: location[0],
+                    y: location[1],
+                    xAxisPoint: api.coord([api.value(0), 0])
+                  },
+                  style: {
+                    fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                      offset: 0,
+                      color: '#266cb7'
+                    },
+                    {
+                      offset: 1,
+                      color: '#35a3d6'
+                    }
+                    ])
+                  }
+                }, {//柱子右面
+                  type: 'CubeRight',
+                  shape: {
+                    api,
+                    xValue: api.value(0),
+                    yValue: api.value(1),
+                    x: location[0],
+                    y: location[1],
+                    xAxisPoint: api.coord([api.value(0), 0])
+                  },
+                  style: {
+                    fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                      offset: 0,
+                      color: '#36a1f6'
+                    },
+                    {
+                      offset: 1,
+                      color: '#37ceee'
+                    }
+                    ])
+                  }
+                }, {
+                  type: 'CubeTop',
+                  shape: {
+                    api,
+                    xValue: api.value(0),
+                    yValue: api.value(1),
+                    x: location[0],
+                    y: location[1],
+                    xAxisPoint: api.coord([api.value(0), 0])
+                  },
+                  style: {
+                    fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                      offset: 0,
+                      color: '#37d9ea'
+                    },
+                    {
+                      offset: 1,
+                      color: '#37d9ea'
+                    }
+                    ])
+                  }
+                }]
+              }
+            },
+            data: VALUE
+          }
+        ]
+      }
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts19() {
+      var myChart = echarts.init(document.getElementById('echarts19'))
+
+      var yData = [450, 650, 750, 620];
+      var option = {
+        grid: {
+          top: "5%",
+          left: "5%",
+          bottom: "5%",
+          right: "5%",
+          containLabel: true
+        },
+        tooltip: {
+          show: true,
+          trigger: 'axis',
+          formatter: '{b0}<br />柱的数据: {c0}<br />线的数据: {c3}'
+        },
+        xAxis: [{
+          type: "category",
+          data: [2015, 2016, 2017, 2018],
+          axisTick: {
+            alignWithLabel: true
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#35384d"
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: "#fff"
+            },
+            margin: 20
+          }
+        }],
+        yAxis: [{
+          type: "value",
+          axisLine: {
+            lineStyle: {
+              color: "#35384d"
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: "#fff"
+            },
+          },
+          splitLine: {
+            lineStyle: {
+              color: "#0f122b"
+            }
+          },
+          axisTick: {
+            show: false
+          }
+        }],
+        series: [
+          {
+            name: "",
+            type: 'pictorialBar',
+            symbolSize: [30, 10],
+            symbolOffset: [0, -6],
+            symbolPosition: 'end',
+            z: 12,
+            color: "#008ed7",
+            data: yData
+          },
+          {
+            name: '',
+            type: 'pictorialBar',
+            symbolSize: [30, 10],
+            symbolOffset: [0, 7],
+            color: "#00abff",
+            data: yData
+          },
+          {
+            type: 'bar',
+            barWidth: 30,
+            barGap: '10%',
+            barCateGoryGap: '10%',
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 0.7, [{
+                  offset: 0,
+                  color: "#00d6ff"
+                },
+                {
+                  offset: 1,
+                  color: "#00abff"
+                }
+                ]),
+                opacity: 1
+              },
+            },
+            data: yData
+          },
+          {
+            name: '线1',
+            data: [540, 750, 850, 780],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            symbol: 'emptyCircle',
+            symbolSize: 8,
+            lineStyle: {
+              color: '#00d8ff'
+            },
+            itemStyle: {
+              color: '#00d8ff'
+            },
+            z: 30
+          },
+        ]
+      };
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts20() { }
+
+    echarts17()
+    echarts18()
+    echarts19()
+  })
+
+</script>
 
 </html>

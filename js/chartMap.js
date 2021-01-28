@@ -3158,10 +3158,9 @@ option8 = {
 	},
 	legend: {
 		show: false,
-		orient: 'vertical',
-		top: 'bottom',
-		left: 'right',
-		data: ['地点', '线路'],
+		orient: 'horizontal',
+		top: '10%',
+		left: 'center',
 		textStyle: {
 			color: '#fff',
 		},

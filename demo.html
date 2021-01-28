@@ -29,12 +29,15 @@
 
 <body>
   <!-- 
-      查找对应的图表写法时,
+
+      查找对应的图表写法时, 
       可以根据标签(f12找到对应id),比如要找echarts1对应图表,ctrl+f查找echarts1
       即可找到对应的js代码
+  
   -->
   <div class="box_">
     <div class="box" id="echarts1"></div>
+    <div class="box" id="echarts_1"></div>
     <div class="box" id="echarts2"></div>
     <div class="box" id="echarts3"></div>
     <div class="box" id="echarts4"></div>
@@ -51,6 +54,7 @@
 
   <div class="box_">
     <div class="box" id="echarts11"></div>
+    <div class="box" id="echarts12"></div>
   </div>
 </body>
 
@@ -60,12 +64,23 @@
 <script>
   $(function () {
     var myTime
+    var myTime_1
     var myTime1
     var myTime2
     var myTime3
     function echarts1() {
       var myChart = echarts.init(document.getElementById('echarts1'))
       var option = {
+        title: {
+          text: '',
+          textStyle: {
+            color: '#fff',
+            fontWeight: 'normal',
+            fontSize: 14,
+          },
+          left: 'center',
+          top: 'middle',
+        },
         color: ['#04a5f9'],//图表的柱子颜色,设置颜色渐变在series.itemStyle
         tooltip: {//提示框
           trigger: 'axis',
@@ -89,7 +104,7 @@
           top: 10
         },
         grid: {//边距
-          left: '1%',
+          left: '5%',
           right: '2%',
           bottom: '3%',
           containLabel: true,
@@ -192,6 +207,155 @@
         myswipe()
       }
     }
+
+    function echarts_1(xdata, ydata) {
+      var myChart = echarts.init(document.getElementById('echarts_1'))
+      var option = {
+        title: {
+          text: '',
+          textStyle: {
+            color: '#fff',
+            fontWeight: 'normal',
+            fontSize: 14,
+          },
+          left: 'center',
+          top: 'middle',
+        },
+        color: ['#04a5f9'],//图表的柱子颜色,设置颜色渐变在series.itemStyle
+        tooltip: {//提示框
+          trigger: 'axis',
+          axisPointer: {
+            type: 'line',
+          },
+          transitionDuration: 0,
+          //模板变量
+          // formatter: '{a}{b}{c}{d}',
+          //自定义的html
+          // formatter: function (params) {
+          //   var html_=''
+          //   //do sth
+          //   return html_
+          // }
+        },
+        legend: {//图例
+          show: false,
+          textStyle: {
+            color: '#fff',
+          },
+          top: 10
+        },
+        grid: {//边距
+          left: '5%',
+          right: '2%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            //x轴数据
+            data: xdata,
+            nameTextStyle: {
+              fontSize: 14,
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                color: '#66687a',
+                width: 1,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '数量',
+            axisLine: {
+              show: false,
+            },
+            axisLabel: { color: '#66687a' },
+            axisTick: {
+              show: false,
+            },
+            nameTextStyle: {
+              color: '#fff',
+            },
+            splitLine: {// 分割线
+              show: true,
+              lineStyle: {
+                color: '#66687a',
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: '数量',
+            type: 'bar',
+            barWidth: '15',//柱的宽度
+            animationDuration: 3000,
+            animationDelay: 300,
+            //y轴数据
+            data: ydata,
+            itemStyle: {
+              // 柱子颜色渐变
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#1974e2' },
+                { offset: 0.5, color: '#0f8ced' },
+                { offset: 1, color: '#04a5f9' },
+              ]),
+            }
+          },
+        ],
+      }
+
+      //无数据时,可以使用title来显示暂无数据字样
+      if (ydata.length == 0) {
+        option.title.text = '暂无数据'
+      } else {
+        option.title.text = ''
+      }
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+
+      //循环自动提示
+      setTimeout(() => {
+        clearInterval(myTime_1)
+        myswipe()
+      }, 30)
+      var index = 0
+
+      var myswipe = function () {
+        myTime_1 = setInterval(function () {
+          myChart.dispatchAction({
+            type: 'showTip',
+            seriesIndex: 0,
+            dataIndex: index,
+          })
+          index++
+          if (index > option.series[0].data.length) {
+            index = 0
+          }
+        }, 5000)
+      }
+      document.getElementById('echarts_1').onmouseover = function () {
+        clearInterval(myTime_1)
+      }
+      document.getElementById('echarts_1').onmouseout = function () {
+        clearInterval(myTime_1)
+        myswipe()
+      }
+    }
+
     function echarts2() {
       // 基于准备好的dom，初始化echarts实例
       var myChart = echarts.init(document.getElementById('echarts2'))
@@ -351,6 +515,7 @@
         myswipe()
       }
     }
+
     function echarts3() {
       var myChart = echarts.init(document.getElementById('echarts3'))
       var option = {
@@ -599,7 +764,12 @@
       }
     }
 
+    var xdata = ['1月', '2月', '3月', '4月', '5月', '6月']
+    // var ydata = [10, 20, 30, 40, 50, 60]
+    var ydata = []
+
     echarts1()
+    echarts_1(xdata, ydata)
     echarts2()
     echarts3()
     echarts4()
@@ -1267,9 +1437,21 @@
 </script>
 
 <script>
+  var index3 = -1
+  var pieTime
   function echarts11() {
     var myChart = echarts.init(document.getElementById('echarts11'))
     var option = {
+      title: {
+        text: '',
+        textStyle: {
+          color: '#fff',
+          fontWeight: 'normal',
+          fontSize: 14,
+        },
+        left: 'center',
+        top: 'middle',
+      },
       color: ['#00f0ff', '#0090ff', '#1b51ff', '#2a00ff', '#ffd074'],
       tooltip: {
         trigger: 'item',
@@ -1325,6 +1507,8 @@
       ],
     }
 
+
+
     myChart.clear()
     myChart.setOption(option)
     window.addEventListener('resize', function () {
@@ -1339,12 +1523,91 @@
         dataIndex: index3,
       })
     })
+
     myChart.on('mouseout', () => {
       pieActive(myChart, option)
     })
+
   }
 
-  echarts11()
+  function echarts12(piedata) {
+    var myChart = echarts.init(document.getElementById('echarts12'))
+    var option = {
+      title: {
+        text: '',
+        textStyle: {
+          color: '#fff',
+          fontWeight: 'normal',
+          fontSize: 14,
+        },
+        left: 'center',
+        top: 'middle',
+      },
+      color: ['#00f0ff', '#0090ff', '#1b51ff', '#2a00ff', '#ffd074'],
+      tooltip: {
+        trigger: 'item',
+        // 饼图提示框写在series.label里面
+        formatter: function (params) {
+          return ''
+        },
+        transitionDuration: 0,
+      },
+      legend: {
+        type: 'scroll',
+        orient: 'horizontal',
+        left: 10,
+        textStyle: {
+          color: '#fff',
+        },
+      },
+      series: [
+        {
+          name: '种植面积',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center',
+            // 饼图的提示框
+            formatter: '{b}\n{a}:{c}\n占比:{d}%',
+            fontSize: 12,
+          },
+          animationDelay: 1000,
+          animationDuration: 3000,
+          animationEasing: 'cubicInOut',
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '16',
+              fontWeight: 'bold',
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          // 饼图的数据格式
+          data: piedata,
+        },
+      ],
+    }
+
+    if (piedata.length == 0) {
+      option.title.text = '暂无数据'
+      option.legend.show = false
+    } else {
+      option.title.text = ''
+      option.legend.show = true
+    }
+
+    myChart.clear()
+    myChart.setOption(option)
+    window.addEventListener('resize', function () {
+      myChart.resize()
+    })
+
+  }
+
 
   function pieActive(myChart, option) {
     index3 = -1 //高亮所在下标
@@ -1367,9 +1630,13 @@
       if (index3 > dataLength) {
         index3 = 0
       }
-    }, 5000)
+    }, 1000)
   }
 
+  var piedata = []
+
+  echarts11()
+  echarts12(piedata)
 </script>
 
 </html>
