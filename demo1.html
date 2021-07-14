@@ -156,6 +156,13 @@
       font-size: 16px;
       color: #fff;
     }
+
+    #echarts9 {
+      width: 476px;
+      height: 315px;
+      background: url('./img/img_bg.png') no-repeat center;
+      background-size: contain;
+    }
   </style>
 </head>
 
@@ -216,6 +223,8 @@
   <div class="box_">
     <div class="box" id="echarts15"></div>
     <div class="box" id="echarts16"></div>
+  </div>
+  <div class="box_">
     <div class="box" id="echarts17"></div>
     <div class="box" id="echarts18"></div>
     <div class="box" id="echarts19"></div>
@@ -1014,9 +1023,8 @@
         tooltip: {},
         radar: {
           name: {
-            textStyle: {
-              color: '#fff'
-            }
+            color: '#fff',
+            padding: 8
           },
           indicator: [
             { name: '销售', max: 6500 },
@@ -1047,7 +1055,8 @@
           splitLine: {
             lineStyle: {
               // 使用深浅的间隔色
-              color: ['#192862', '#192862', '#192862', '#192862', '#192862', '#202a66',]
+              color: ['#192862', '#192862', '#192862', '#192862', '#192862', '#202a66'],
+              width: 2
             }
           }
         },
@@ -1075,26 +1084,155 @@
 
     function echarts10() {
       var myChart = echarts.init(document.getElementById('echarts10'))
-
       data = [{
         name: 'user1',
         value: 10,
+        symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA3MzA5QUY4NjE0NzExRUJBMUMyODQwQTQyREY4NzJDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA3MzA5QUY5NjE0NzExRUJBMUMyODQwQTQyREY4NzJDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDczMDlBRjY2MTQ3MTFFQkExQzI4NDBBNDJERjg3MkMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDczMDlBRjc2MTQ3MTFFQkExQzI4NDBBNDJERjg3MkMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5Hp3T8AAADrklEQVR42qxYvY7TQBC21z4nl/iSCxyIjgIh0cMbcAU14gF4hGsoqeiRKJB4ATo6ClpKRAPSFVRI0CE4KReSOHESO8xK36K5vdnNOrmRPiWxNzvfzp9nHL/9tY62EEVoEfYIKX5r6M1qwgoo8dlI0obr9wkdEPIJv69JzQhTEL4yUm1Cj61fwwoLKK1wLYbFUlixje8HhJwwAda7kNIKDrG5OfUUJ/edurSsluPzANYeEpbbkNL3rhMSEBiDUFMpgYzQhwWPCCNC4bKEJOaPCVz0Z0tCXPQ+Z9gnhgfyUEslsJAmPIepfTFgMjDGugqukf6zhoVWsFoP62c+UnrjayBUeghpIl3EmvK4rbAVQoy1erDYkpcOm1QOhZWDUIwTdgLc1WJBfi4E9gT69V4DhMilmEqZj4dCdmm33ggkJMXnvnBvBAMYy18ilcMSBYLSJnS0RbHlFh6w0mLHGNf/n5RiJxkLmw5AbFcZCAebw7WJ4aDY4yPGgsr6Uxc15irExKQU+JFNyjyrZsImuUeJjq8TwkfCD8IXwivC3Q0JkAnWinA9tkmV1uLM4zZdy94TnoGEDtabhCeED4SHGw7DpUYcayNkCkpjuK0WHsQueUm45+kmXhNuBXQRRkzJ2FMs8FaOdJZEkzneED/64fvUcS8Riq7RnyiTho7K7XLdg8DAvu+5lwjlITIx5SPla/ZC+7BQuUCq9nQMrp7pW6Ai37ra0bHUitUlyVWu/voT4WcAqXceq1QOd14glTJX8h4ocpA9EUoIlzeEz57eytVGrcwEsmR1icvME2ta4WPCqXVddwTPCS88hAtPmVikrGiaRr+0/F7wJ7glXwmPCHcIt0Ho1Nd/wzNzgVBshpCUMc+RVX8t64xxXXkUfQdCZCRYv8Mfc4rFyAK/u0KWDK/ogTwVrJTi0GvjVmVZxPQ1Smhthw1rmRRHI+F6n92vbFIlTmFmvUgI+jMhlUOK4gjxJhXhFhvhxII5woK2o2XRAfwbcVcHkCmwXhrPMnb4C/ulQmacY6LpYeOpoMyM3xlOal5y1GzEmnvcnUKHab+LTXPfHBbrA8rRIpsiuGjozhbaYsV0BY3tU5zyEC1IxobIXVrhAxYWzkE33ZAtFU7Vwng1BaqGZPZBKGGZPt72rUuJQO1j4xyYsxcXlXDahD0h+BS9hMUXu76fMsVzAkJtBp4gPKNjIWsnjhF+pzd5S5BTINRig0UiHGTJal+jWNxm4q2tNI6telfvWPmjfwIMAJHHBGZ6fbxiAAAAAElFTkSuQmCC',
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              1,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#131e57'
+                },
+                {
+                  offset: 0.7,
+                  color: '#4b60fb'
+                },
+                {
+                  offset: 1,
+                  color: '#4c61ff'
+                }
+              ],
+              false
+            )
+          },
+        }
       },
       {
         name: 'user2',
         value: 20,
+        symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ2QjYzM0Q2NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ2QjYzM0Q3NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDZCNjMzRDQ1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDZCNjMzRDU1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5XONimAAADsElEQVR42rRYPY8TMRDNOnvZXHLJXe6OghLR0NAiWvgHCERFCRUlPT+BDgkh8RPokOgpqA6QKBEtDR/3mWw2yWbNGD1HIzN2vBsY6elya6/9PPN2PHbyTH9sNbQOYYuQEtqEBM8rQgnM8H8tS2v2NyT6hC5BRb6zIOSA/pekDJkhIWPPrCfM3yWbUGHcDvPmLmFAGBMm68jFkDJkdvBbY9AcZNZZAq/2QdCM1SOcwIO1SZkV72OwFshc1NSIWcQUyOAxM+ch4RTPxYl9zw9ByITmJ+GsiWiZmVD/ABHjwRE8GOUp88IB2kyIfoGYz9roq+CZJd7THs+doH0Az1WuxyRSexBnCQ9VHiJmldv4LU0+g/YKof0CfYaYr+Qac0ltA+aFYw+hAYSfRAjcYA79uB/GGPP3EMof1rvKGWiI32fCIFZngzWEpCR7CYt1zc6Tcn1xUn2EYg63uyvnX2Jds8LuCmE+x++V911SNt6SzjqtzW0kSKaAIxRCuSKVwUs2S3Prelzf1GN7wvMJ0/SKtXXr1CPsUIK9S7hDuArxvie8IHwLaCxzFl8glKZNpaxjS/DSFiCZGfgV4Zbz/BrhPuER4Z3n3Z4zl0YIzZgd5aSGhTCxz54KhFpMtC8JlwMLkqqJP45QrBZaClnY5yXziT9Yox8T9oeBsLuCtymorZjYfZlbshuRFcbNNXrkZudXKuJr8YUnxoYNxl5tor5OvqrgaySpL4G2ykNSK1YBSKHyFXKfIom9DrSVHqlUvNxIBGLzwCqfBNqNvSG8DdTt2lNGlcr5HDNhC/CF8IhwTwiRGes54XGgFp8G0sQ8ZUnTlhq5k9TygLA/EG4TrhOuIKMfYfcPaSkXUk8bbYuUMd9le+DSKci2A+nBEP8MxJhU5/e4B3mOsrXzjqeE1a3NrWCbL88APb4xK6cStKxTQfCbEpthDCmXJSBcuqTsSdZXXhSo2ZcNCI1xANGCuHtOsfdXqj9HKDuebGyIf2f9Yo9V556T1IjprPQdHCocGA6gLS1Uopodv21txI9YFcJdBLzaRnmtQHy87ohlTx8j7PTK84nbY9SswSXJPjsPHMce26esNu9joNPI+4OQ9ZmwLSFd5y5hCveP2DEph6vrir0Lr9v6LIf3dZNblzmEam9L+sAMmpl5vKdAIHMS7xJkik2vgiqEbgLxdzFZxrRVAQkIKaEimMRenNW5yVsg+SlGrAMvtJ1tSKP/nJ3r/tv1It9Qc1acKZYSdMMEu7LfAgwAaQ0Mlnz6kBkAAAAASUVORK5CYII=',
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              1,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#132a37'
+                },
+                {
+                  offset: 0.7,
+                  color: '#65e3ac'
+                },
+                {
+                  offset: 1,
+                  color: '#65e3ac'
+                }
+              ],
+              false
+            )
+          },
+        }
       },
       {
         name: 'user3',
         value: 30,
+        symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA3MzA5QUY4NjE0NzExRUJBMUMyODQwQTQyREY4NzJDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA3MzA5QUY5NjE0NzExRUJBMUMyODQwQTQyREY4NzJDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDczMDlBRjY2MTQ3MTFFQkExQzI4NDBBNDJERjg3MkMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDczMDlBRjc2MTQ3MTFFQkExQzI4NDBBNDJERjg3MkMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5Hp3T8AAADrklEQVR42qxYvY7TQBC21z4nl/iSCxyIjgIh0cMbcAU14gF4hGsoqeiRKJB4ATo6ClpKRAPSFVRI0CE4KReSOHESO8xK36K5vdnNOrmRPiWxNzvfzp9nHL/9tY62EEVoEfYIKX5r6M1qwgoo8dlI0obr9wkdEPIJv69JzQhTEL4yUm1Cj61fwwoLKK1wLYbFUlixje8HhJwwAda7kNIKDrG5OfUUJ/edurSsluPzANYeEpbbkNL3rhMSEBiDUFMpgYzQhwWPCCNC4bKEJOaPCVz0Z0tCXPQ+Z9gnhgfyUEslsJAmPIepfTFgMjDGugqukf6zhoVWsFoP62c+UnrjayBUeghpIl3EmvK4rbAVQoy1erDYkpcOm1QOhZWDUIwTdgLc1WJBfi4E9gT69V4DhMilmEqZj4dCdmm33ggkJMXnvnBvBAMYy18ilcMSBYLSJnS0RbHlFh6w0mLHGNf/n5RiJxkLmw5AbFcZCAebw7WJ4aDY4yPGgsr6Uxc15irExKQU+JFNyjyrZsImuUeJjq8TwkfCD8IXwivC3Q0JkAnWinA9tkmV1uLM4zZdy94TnoGEDtabhCeED4SHGw7DpUYcayNkCkpjuK0WHsQueUm45+kmXhNuBXQRRkzJ2FMs8FaOdJZEkzneED/64fvUcS8Riq7RnyiTho7K7XLdg8DAvu+5lwjlITIx5SPla/ZC+7BQuUCq9nQMrp7pW6Ai37ra0bHUitUlyVWu/voT4WcAqXceq1QOd14glTJX8h4ocpA9EUoIlzeEz57eytVGrcwEsmR1icvME2ta4WPCqXVddwTPCS88hAtPmVikrGiaRr+0/F7wJ7glXwmPCHcIt0Ho1Nd/wzNzgVBshpCUMc+RVX8t64xxXXkUfQdCZCRYv8Mfc4rFyAK/u0KWDK/ogTwVrJTi0GvjVmVZxPQ1Smhthw1rmRRHI+F6n92vbFIlTmFmvUgI+jMhlUOK4gjxJhXhFhvhxII5woK2o2XRAfwbcVcHkCmwXhrPMnb4C/ulQmacY6LpYeOpoMyM3xlOal5y1GzEmnvcnUKHab+LTXPfHBbrA8rRIpsiuGjozhbaYsV0BY3tU5zyEC1IxobIXVrhAxYWzkE33ZAtFU7Vwng1BaqGZPZBKGGZPt72rUuJQO1j4xyYsxcXlXDahD0h+BS9hMUXu76fMsVzAkJtBp4gPKNjIWsnjhF+pzd5S5BTINRig0UiHGTJal+jWNxm4q2tNI6telfvWPmjfwIMAJHHBGZ6fbxiAAAAAElFTkSuQmCC',
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              1,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#131e57'
+                },
+                {
+                  offset: 0.7,
+                  color: '#4b60fb'
+                },
+                {
+                  offset: 1,
+                  color: '#4c61ff'
+                }
+              ],
+              false
+            )
+          },
+        }
       },
       {
         name: 'user4',
         value: 40,
+        symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ2QjYzM0Q2NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ2QjYzM0Q3NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDZCNjMzRDQ1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDZCNjMzRDU1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5XONimAAADsElEQVR42rRYPY8TMRDNOnvZXHLJXe6OghLR0NAiWvgHCERFCRUlPT+BDgkh8RPokOgpqA6QKBEtDR/3mWw2yWbNGD1HIzN2vBsY6elya6/9PPN2PHbyTH9sNbQOYYuQEtqEBM8rQgnM8H8tS2v2NyT6hC5BRb6zIOSA/pekDJkhIWPPrCfM3yWbUGHcDvPmLmFAGBMm68jFkDJkdvBbY9AcZNZZAq/2QdCM1SOcwIO1SZkV72OwFshc1NSIWcQUyOAxM+ch4RTPxYl9zw9ByITmJ+GsiWiZmVD/ABHjwRE8GOUp88IB2kyIfoGYz9roq+CZJd7THs+doH0Az1WuxyRSexBnCQ9VHiJmldv4LU0+g/YKof0CfYaYr+Qac0ltA+aFYw+hAYSfRAjcYA79uB/GGPP3EMof1rvKGWiI32fCIFZngzWEpCR7CYt1zc6Tcn1xUn2EYg63uyvnX2Jds8LuCmE+x++V911SNt6SzjqtzW0kSKaAIxRCuSKVwUs2S3Prelzf1GN7wvMJ0/SKtXXr1CPsUIK9S7hDuArxvie8IHwLaCxzFl8glKZNpaxjS/DSFiCZGfgV4Zbz/BrhPuER4Z3n3Z4zl0YIzZgd5aSGhTCxz54KhFpMtC8JlwMLkqqJP45QrBZaClnY5yXziT9Yox8T9oeBsLuCtymorZjYfZlbshuRFcbNNXrkZudXKuJr8YUnxoYNxl5tor5OvqrgaySpL4G2ykNSK1YBSKHyFXKfIom9DrSVHqlUvNxIBGLzwCqfBNqNvSG8DdTt2lNGlcr5HDNhC/CF8IhwTwiRGes54XGgFp8G0sQ8ZUnTlhq5k9TygLA/EG4TrhOuIKMfYfcPaSkXUk8bbYuUMd9le+DSKci2A+nBEP8MxJhU5/e4B3mOsrXzjqeE1a3NrWCbL88APb4xK6cStKxTQfCbEpthDCmXJSBcuqTsSdZXXhSo2ZcNCI1xANGCuHtOsfdXqj9HKDuebGyIf2f9Yo9V556T1IjprPQdHCocGA6gLS1Uopodv21txI9YFcJdBLzaRnmtQHy87ohlTx8j7PTK84nbY9SswSXJPjsPHMce26esNu9joNPI+4OQ9ZmwLSFd5y5hCveP2DEph6vrir0Lr9v6LIf3dZNblzmEam9L+sAMmpl5vKdAIHMS7xJkik2vgiqEbgLxdzFZxrRVAQkIKaEimMRenNW5yVsg+SlGrAMvtJ1tSKP/nJ3r/tv1It9Qc1acKZYSdMMEu7LfAgwAaQ0Mlnz6kBkAAAAASUVORK5CYII=',
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              1,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#132a37'
+                },
+                {
+                  offset: 0.7,
+                  color: '#65e3ac'
+                },
+                {
+                  offset: 1,
+                  color: '#65e3ac'
+                }
+              ],
+              false
+            )
+          },
+        }
       },
       {
         name: 'user5',
         value: 50,
+        symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA3MzA5QUY4NjE0NzExRUJBMUMyODQwQTQyREY4NzJDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA3MzA5QUY5NjE0NzExRUJBMUMyODQwQTQyREY4NzJDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDczMDlBRjY2MTQ3MTFFQkExQzI4NDBBNDJERjg3MkMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDczMDlBRjc2MTQ3MTFFQkExQzI4NDBBNDJERjg3MkMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5Hp3T8AAADrklEQVR42qxYvY7TQBC21z4nl/iSCxyIjgIh0cMbcAU14gF4hGsoqeiRKJB4ATo6ClpKRAPSFVRI0CE4KReSOHESO8xK36K5vdnNOrmRPiWxNzvfzp9nHL/9tY62EEVoEfYIKX5r6M1qwgoo8dlI0obr9wkdEPIJv69JzQhTEL4yUm1Cj61fwwoLKK1wLYbFUlixje8HhJwwAda7kNIKDrG5OfUUJ/edurSsluPzANYeEpbbkNL3rhMSEBiDUFMpgYzQhwWPCCNC4bKEJOaPCVz0Z0tCXPQ+Z9gnhgfyUEslsJAmPIepfTFgMjDGugqukf6zhoVWsFoP62c+UnrjayBUeghpIl3EmvK4rbAVQoy1erDYkpcOm1QOhZWDUIwTdgLc1WJBfi4E9gT69V4DhMilmEqZj4dCdmm33ggkJMXnvnBvBAMYy18ilcMSBYLSJnS0RbHlFh6w0mLHGNf/n5RiJxkLmw5AbFcZCAebw7WJ4aDY4yPGgsr6Uxc15irExKQU+JFNyjyrZsImuUeJjq8TwkfCD8IXwivC3Q0JkAnWinA9tkmV1uLM4zZdy94TnoGEDtabhCeED4SHGw7DpUYcayNkCkpjuK0WHsQueUm45+kmXhNuBXQRRkzJ2FMs8FaOdJZEkzneED/64fvUcS8Riq7RnyiTho7K7XLdg8DAvu+5lwjlITIx5SPla/ZC+7BQuUCq9nQMrp7pW6Ai37ra0bHUitUlyVWu/voT4WcAqXceq1QOd14glTJX8h4ocpA9EUoIlzeEz57eytVGrcwEsmR1icvME2ta4WPCqXVddwTPCS88hAtPmVikrGiaRr+0/F7wJ7glXwmPCHcIt0Ho1Nd/wzNzgVBshpCUMc+RVX8t64xxXXkUfQdCZCRYv8Mfc4rFyAK/u0KWDK/ogTwVrJTi0GvjVmVZxPQ1Smhthw1rmRRHI+F6n92vbFIlTmFmvUgI+jMhlUOK4gjxJhXhFhvhxII5woK2o2XRAfwbcVcHkCmwXhrPMnb4C/ulQmacY6LpYeOpoMyM3xlOal5y1GzEmnvcnUKHab+LTXPfHBbrA8rRIpsiuGjozhbaYsV0BY3tU5zyEC1IxobIXVrhAxYWzkE33ZAtFU7Vwng1BaqGZPZBKGGZPt72rUuJQO1j4xyYsxcXlXDahD0h+BS9hMUXu76fMsVzAkJtBp4gPKNjIWsnjhF+pzd5S5BTINRig0UiHGTJal+jWNxm4q2tNI6telfvWPmjfwIMAJHHBGZ6fbxiAAAAAElFTkSuQmCC',
+        itemStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              1,
+              0,
+              [
+                {
+                  offset: 0,
+                  color: '#131e57'
+                },
+                {
+                  offset: 0.7,
+                  color: '#4b60fb'
+                },
+                {
+                  offset: 1,
+                  color: '#4c61ff'
+                }
+              ],
+              false
+            )
+          },
+        }
       }
       ];
       getArrByKey = (data, k) => {
@@ -1112,21 +1250,21 @@
         for (var i = 0; i < data.length; i++) {
           arr.push({
             value: data[i].value,
-            symbolPosition: 'end'
+            symbolPosition: 'end',
+            symbol: data[i].symbol,//终点图形形状
           })
         }
         return arr;
       }
       getColors = (data, k) => {
-        let key = k || "value";
-        let res = [];
-        if (data) {
-          data.forEach(function (t) {
-            res.push(t[key]);
-          });
+        let arr = [];
+        for (var i = 0; i < data.length; i++) {
+          arr.push({ itemStyle: data[i].itemStyle })
         }
-        return res;
+        return arr;
       };
+
+      console.log(getColors(data));
 
       opt = {
         index: 0
@@ -1200,33 +1338,7 @@
             showBackground: true,
             barBorderRadius: 30,
             yAxisIndex: 0,
-            data: data,
             barWidth: 5,
-            itemStyle: {
-              normal: {
-                color: new echarts.graphic.LinearGradient(
-                  0,
-                  0,
-                  1,
-                  0,
-                  [
-                    {
-                      offset: 0,
-                      color: '#132a37'
-                    },
-                    {
-                      offset: 0.7,
-                      color: '#65e3ac'
-                    },
-                    {
-                      offset: 1,
-                      color: '#65e3ac'
-                    }
-                  ],
-                  false
-                )
-              },
-            },
             label: {
               normal: {
                 color: '#fff',
@@ -1239,13 +1351,12 @@
                   return a.name
                 }
               }
-            }
+            },
+            data: data,//多系列时设置不同的颜色
           },
           {
             name: 'XXX',
             type: 'pictorialBar',//圆点是一个图片,要修改颜色需要把base64编码换了
-            // symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAMAAADWZboaAAAAZlBMVEUAAABe3uVe3+Vf3uVf3+Zf3uVg3+Zg3+Zf3+Vi4OZh4OZg3+Z86/Bh3+Zi4Odj4Odi4OZ86/B76/B86/Bj4ed56+9x5+xn4umB7/N87PB36e+A7/N+7fF/7vJ/7vJ+7fGA7/OB7/PReX+lAAAAIXRSTlMABQkVDREmIhk3MR10LEFFPHh7cUprXE35h2XnqMLAp+mHAG9cAAAB5ElEQVRIx83WjU7CMBQFYIoiKMqU/XUboHv/l/Tce7t2XamDNSacETEmX86tlK2rx4py150o+MstMBLwWRfHKo6JCVxLnvmFGBjFQ58oF1//sUZhGy/ClSTWObgnL4O+bkeN4nY2okfNMbkRt9/vtxz8InoTsWplJSCzFxPmO8+GpSIByX3YQAuGDWtRKhKjCnxDXhF6Z4yxnZ20Wgko7BMRDmxtSGVaI4kdTIgb+zTYoJQlIMlDlmUFgrcDWWC201qSayqlTkiCddWWeV62VU0YlnpRi9VOKaSUsiyq/N0krwq2Ugt7lVpZl5BfHNiytjagMi+XYp0kCR45hMlivVQrE/uU5pXSrCB5bM6d1t2lOZItMqmliT3q5uVxqxzyW/ccfYLNKx7ZTeykMvNyac2yt2Fbc61MHLSC0rwoxbiNdlQ3GBm1NLHQsHUrtEXppR/ljNpW6DbSCoqlFiVoN6YdaFlgsSFVPs1BdT8OaB5QyQzVcaqWDows/zepxR8ObLglTrdtCRVuRNj4Rrxh+//0ke2f8KVL+Kon3GCSbmsJN9OUW3j6g0Ns+LgCij2u0h+Sghc8mlMPBMgdx5DFh59VmOVHrvmDnoNxCz3J7MFWsMuaLyR089xz/xhlfijvwutR8gv3zk6BLUUeCgAAAABJRU5ErkJggg==',
-            symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ2QjYzM0Q2NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ2QjYzM0Q3NUEwMDExRUJBMTIxRDQzN0I0QTQyMEMwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDZCNjMzRDQ1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDZCNjMzRDU1QTAwMTFFQkExMjFENDM3QjRBNDIwQzAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5XONimAAADsElEQVR42rRYPY8TMRDNOnvZXHLJXe6OghLR0NAiWvgHCERFCRUlPT+BDgkh8RPokOgpqA6QKBEtDR/3mWw2yWbNGD1HIzN2vBsY6elya6/9PPN2PHbyTH9sNbQOYYuQEtqEBM8rQgnM8H8tS2v2NyT6hC5BRb6zIOSA/pekDJkhIWPPrCfM3yWbUGHcDvPmLmFAGBMm68jFkDJkdvBbY9AcZNZZAq/2QdCM1SOcwIO1SZkV72OwFshc1NSIWcQUyOAxM+ch4RTPxYl9zw9ByITmJ+GsiWiZmVD/ABHjwRE8GOUp88IB2kyIfoGYz9roq+CZJd7THs+doH0Az1WuxyRSexBnCQ9VHiJmldv4LU0+g/YKof0CfYaYr+Qac0ltA+aFYw+hAYSfRAjcYA79uB/GGPP3EMof1rvKGWiI32fCIFZngzWEpCR7CYt1zc6Tcn1xUn2EYg63uyvnX2Jds8LuCmE+x++V911SNt6SzjqtzW0kSKaAIxRCuSKVwUs2S3Prelzf1GN7wvMJ0/SKtXXr1CPsUIK9S7hDuArxvie8IHwLaCxzFl8glKZNpaxjS/DSFiCZGfgV4Zbz/BrhPuER4Z3n3Z4zl0YIzZgd5aSGhTCxz54KhFpMtC8JlwMLkqqJP45QrBZaClnY5yXziT9Yox8T9oeBsLuCtymorZjYfZlbshuRFcbNNXrkZudXKuJr8YUnxoYNxl5tor5OvqrgaySpL4G2ykNSK1YBSKHyFXKfIom9DrSVHqlUvNxIBGLzwCqfBNqNvSG8DdTt2lNGlcr5HDNhC/CF8IhwTwiRGes54XGgFp8G0sQ8ZUnTlhq5k9TygLA/EG4TrhOuIKMfYfcPaSkXUk8bbYuUMd9le+DSKci2A+nBEP8MxJhU5/e4B3mOsrXzjqeE1a3NrWCbL88APb4xK6cStKxTQfCbEpthDCmXJSBcuqTsSdZXXhSo2ZcNCI1xANGCuHtOsfdXqj9HKDuebGyIf2f9Yo9V556T1IjprPQdHCocGA6gLS1Uopodv21txI9YFcJdBLzaRnmtQHy87ohlTx8j7PTK84nbY9SswSXJPjsPHMce26esNu9joNPI+4OQ9ZmwLSFd5y5hCveP2DEph6vrir0Lr9v6LIf3dZNblzmEam9L+sAMmpl5vKdAIHMS7xJkik2vgiqEbgLxdzFZxrRVAQkIKaEimMRenNW5yVsg+SlGrAMvtJ1tSKP/nJ3r/tv1It9Qc1acKZYSdMMEu7LfAgwAaQ0Mlnz6kBkAAAAASUVORK5CYII=',
             symbolSize: [50, 50],
             symbolOffset: [20, 0],
             z: 12,
@@ -1517,7 +1628,6 @@
       window.addEventListener('resize', function () {
         myChart.resize()
       })
-
     }
 
     function echarts13() {
@@ -2784,24 +2894,6 @@
       })
     }
 
-    function echarts17() {
-      var myChart = echarts.init(document.getElementById('echarts16'))
-
-
-
-      myChart.clear()
-      myChart.setOption(option)
-      window.addEventListener('resize', function () {
-        myChart.resize()
-      })
-    }
-
-    function echarts18() { }
-
-    function echarts19() { }
-
-    function echarts20() { }
-
     function echarts100() {
       var myChart = echarts.init(document.getElementById('echarts100'))
       let angle = 0; //角度，用来做简单的动画效果的
@@ -2905,7 +2997,6 @@
         myChart.resize()
       })
     }
-
 
     function echarts101() {
       var myChart = echarts.init(document.getElementById('echarts101'))
@@ -3099,14 +3190,459 @@
     echarts14()
     echarts15()
     echarts16()
-    // echarts17()
-    echarts18()
-    echarts19()
     echarts100()
     echarts101()
 
   })
 </script>
 
+<script>
+  $(function () {
+    function echarts17() {
+      var myChart = echarts.init(document.getElementById('echarts17'))
+
+      var option = {
+        color: ["#36a1f6", "#37d9ea"],
+        grid: {
+          containLabel: true,
+          left: 20,
+          right: 20,
+          bottom: 10,
+          top: 40
+        },
+        xAxis: {
+          axisLabel: {
+            color: "#889ef0",
+            fontSize: 14,
+            interval: 0
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#384267",
+              width: 1
+            },
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#3d456c",
+              width: 1,
+              type: "solid"
+            },
+            show: true
+          },
+          data: ["1月", "2月", "3月", "4月", "5月"],
+          type: "category"
+        },
+        yAxis: {
+          axisLabel: {
+            color: "#889ef0",
+            fontSize: 14
+          },
+          axisTick: {
+            lineStyle: {
+              color: "#384267",
+              width: 1
+            },
+            show: true
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: "#1a1f3e",
+              type: "solid"
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#3d456c",
+              width: 1,
+              type: "solid"
+            },
+            show: true
+          },
+        },
+        series: [{
+          data: [200, 85, 112, 275, 305],
+          type: "bar",
+          barWidth: 22,
+          itemStyle: {
+            color: {
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              type: "linear",
+              global: false,
+              colorStops: [{
+                offset: 0,
+                color: "#36a1f6"
+              }, {
+                offset: 1,
+                color: "#37d9ea"
+              }]
+            }
+          },
+          label: {
+            show: true,
+            position: "top",
+            distance: 10,
+            color: "#fff"
+          }
+        }, {
+          data: [1, 1, 1, 1, 1, 1, 1, 1],
+          type: "pictorialBar",
+          symbol: "diamond",
+          symbolOffset: [0, "50%"],
+          symbolSize: [22, 8],
+          itemStyle: {
+            color: '#37d9ea'
+          }
+        }, {
+          data: [200, 85, 112, 275, 305],
+          type: "pictorialBar",
+          symbolPosition: "end",
+          symbol: "diamond",
+          symbolOffset: [0, "-50%"],
+          symbolSize: [22, 8],
+          zlevel: 2,
+          itemStyle: {
+            color: '#37d9ea'
+          }
+        },]
+      }
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts18() {
+      var myChart = echarts.init(document.getElementById('echarts18'))
+
+      const CubeLeft = echarts.graphic.extendShape({
+        shape: {
+          x: 0,
+          y: 0
+        },
+        buildPath: function (ctx, shape) {
+          const xAxisPoint = shape.xAxisPoint
+          const c0 = [shape.x, shape.y]
+          const c1 = [shape.x - 10, shape.y - 10]
+          const c2 = [xAxisPoint[0] - 10, xAxisPoint[1] - 10]
+          const c3 = [xAxisPoint[0], xAxisPoint[1]]
+          ctx.moveTo(c0[0], c0[1]).lineTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).closePath()
+        }
+      })
+      const CubeRight = echarts.graphic.extendShape({
+        shape: {
+          x: 0,
+          y: 0
+        },
+        buildPath: function (ctx, shape) {
+          const xAxisPoint = shape.xAxisPoint
+          const c1 = [shape.x, shape.y]
+          const c2 = [xAxisPoint[0], xAxisPoint[1]]
+          const c3 = [xAxisPoint[0] + 22, xAxisPoint[1] - 6]
+          const c4 = [shape.x + 22, shape.y - 6]
+          ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath()
+        }
+      })
+      const CubeTop = echarts.graphic.extendShape({
+        shape: {
+          x: 0,
+          y: 0
+        },
+        buildPath: function (ctx, shape) {
+          const c1 = [shape.x, shape.y]
+          const c2 = [shape.x + 22, shape.y - 6]
+          const c3 = [shape.x + 12, shape.y - 16]
+          const c4 = [shape.x - 10, shape.y - 10]
+          ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath()
+        }
+      })
+      echarts.graphic.registerShape('CubeLeft', CubeLeft)
+      echarts.graphic.registerShape('CubeRight', CubeRight)
+      echarts.graphic.registerShape('CubeTop', CubeTop)
+
+      const VALUE = [2012, 1230, 3790, 2349, 1654]
+
+      var option = {
+        grid: {
+          left: 10,
+          right: 10,
+          bottom: '5%',
+          top: '5%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          data: ['德州', '德城区', '陵城区', '禹城市', '乐陵市'],
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#3d456c',
+            }
+          },
+          axisTick: {
+            show: false,
+            length: 9,
+            alignWithLabel: true,
+            lineStyle: {
+              color: '#7DFFFD'
+            }
+          },
+          axisLabel: {
+            fontSize: 14,
+            color: "#889ef0",
+          }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            lineStyle: {
+              color: "#3d456c",
+              width: 1,
+              type: "solid"
+            },
+          },
+          splitLine: {
+            lineStyle: {
+              color: "#1a1f3e",
+              type: "solid"
+            }
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            fontSize: 14,
+            color: "#889ef0",
+          },
+        },
+        series: [
+          {
+            type: 'custom',
+            renderItem: (params, api) => {
+              const location = api.coord([api.value(0), api.value(1)])
+              return {
+                type: 'group',
+                children: [{//柱子左面
+                  type: 'CubeLeft',
+                  shape: {
+                    api,
+                    xValue: api.value(0),
+                    yValue: api.value(1),
+                    x: location[0],
+                    y: location[1],
+                    xAxisPoint: api.coord([api.value(0), 0])
+                  },
+                  style: {
+                    fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                      offset: 0,
+                      color: '#266cb7'
+                    },
+                    {
+                      offset: 1,
+                      color: '#35a3d6'
+                    }
+                    ])
+                  }
+                }, {//柱子右面
+                  type: 'CubeRight',
+                  shape: {
+                    api,
+                    xValue: api.value(0),
+                    yValue: api.value(1),
+                    x: location[0],
+                    y: location[1],
+                    xAxisPoint: api.coord([api.value(0), 0])
+                  },
+                  style: {
+                    fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                      offset: 0,
+                      color: '#36a1f6'
+                    },
+                    {
+                      offset: 1,
+                      color: '#37ceee'
+                    }
+                    ])
+                  }
+                }, {
+                  type: 'CubeTop',
+                  shape: {
+                    api,
+                    xValue: api.value(0),
+                    yValue: api.value(1),
+                    x: location[0],
+                    y: location[1],
+                    xAxisPoint: api.coord([api.value(0), 0])
+                  },
+                  style: {
+                    fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                      offset: 0,
+                      color: '#37d9ea'
+                    },
+                    {
+                      offset: 1,
+                      color: '#37d9ea'
+                    }
+                    ])
+                  }
+                }]
+              }
+            },
+            data: VALUE
+          }
+        ]
+      }
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts19() {
+      var myChart = echarts.init(document.getElementById('echarts19'))
+
+      var yData = [450, 650, 750, 620]
+      var option = {
+        grid: {
+          top: "5%",
+          left: "5%",
+          bottom: "5%",
+          right: "5%",
+          containLabel: true
+        },
+        tooltip: {
+          show: true,
+          trigger: 'axis',
+          formatter: '{b0}<br />柱的数据: {c0}<br />线的数据: {c3}'
+        },
+        xAxis: [
+          {
+            type: "category",
+            data: [2015, 2016, 2017, 2018],
+            axisTick: {
+              alignWithLabel: true
+            },
+            axisLine: {
+              lineStyle: {
+                color: "#35384d"
+              }
+            },
+            axisLabel: {
+              textStyle: {
+                color: "#fff"
+              },
+              margin: 20
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                color: "#35384d"
+              }
+            },
+            axisLabel: {
+              textStyle: {
+                color: "#fff"
+              },
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#0f122b"
+              }
+            },
+            axisTick: {
+              show: false
+            }
+          }
+        ],
+        series: [
+          {
+            name: "",
+            type: 'pictorialBar',
+            symbolSize: [30, 10],
+            symbolOffset: [0, -6],
+            symbolPosition: 'end',
+            z: 12,
+            color: "#008ed7",
+            data: yData
+          },
+          {
+            name: '',
+            type: 'pictorialBar',
+            symbolSize: [30, 10],
+            symbolOffset: [0, 7],
+            color: "#00abff",
+            data: yData
+          },
+          {
+            type: 'bar',
+            barWidth: 30,
+            barGap: '10%',
+            barCateGoryGap: '10%',
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 0.7, [{
+                  offset: 0,
+                  color: "#00d6ff"
+                },
+                {
+                  offset: 1,
+                  color: "#00abff"
+                }
+                ]),
+                opacity: 1
+              },
+            },
+            data: yData
+          },
+          {
+            name: '线1',
+            data: [540, 750, 850, 780],
+            animationDuration: 3000,
+            animationDelay: 200,
+            type: 'line',
+            symbol: 'emptyCircle',
+            symbolSize: 8,
+            lineStyle: {
+              color: '#00d8ff'
+            },
+            itemStyle: {
+              color: '#00d8ff'
+            },
+            z: 30
+          },
+        ]
+      };
+
+      myChart.clear()
+      myChart.setOption(option)
+      window.addEventListener('resize', function () {
+        myChart.resize()
+      })
+    }
+
+    function echarts20() { }
+
+    echarts17()
+    echarts18()
+    echarts19()
+  })
+
+</script>
 
 </html>

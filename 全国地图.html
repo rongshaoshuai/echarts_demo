@@ -13,17 +13,18 @@
       margin-top: 40px
     }
 
+    #echarts1>div:last-child {
+      display: block !important;
+    }
+
     body {
-      background: #060c3c;
+      background: #ccc;
     }
   </style>
 </head>
 
 <body>
-  <div id="echarts1">
-
-  </div>
-
+  <div id="echarts1"></div>
 </body>
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/echarts.min.js"></script>
@@ -87,12 +88,20 @@
         text: '各省份近七日舆情分布',
         left: 'center',
         top: 30,
-        textStyle: { color: '#67bffb', fontWeight: 'normal', fontSize: 16 },
+        textStyle: { color: '#bf1e16', fontWeight: 'normal', fontSize: 16 },
       },
       tooltip: {
-        show: false,
+        show: true,
+        transitionDuration: 0,
         formatter: function (params) {
-          var info = '<p style="font-size:18px">' + params.name
+          var info = ''
+          if (params.value) {
+            info =
+              '<p style="font-size:18px">' + params.name + ':' + params.value
+          } else {
+            info =
+              '<p style="font-size:18px">暂无舆情'
+          }
           return info
         },
         backgroundColor: '#ff7f50', //提示标签背景颜色
@@ -101,8 +110,8 @@
       //左侧小导航图标
       visualMap: {
         show: true,
-        x: 50,
-        y: 300,
+        left: 50,
+        bottom: 100,
         splitList: [
           { start: 750 },
           { start: 600, end: 749 },
@@ -112,7 +121,7 @@
           { start: 0, end: 149 },
         ],
         textStyle: {
-          color: '#67bffb',
+          color: '#bf1e16',
         },
         color: [
           '#bf1e16',
@@ -129,10 +138,10 @@
           type: 'map',
           mapType: 'china',
           label: {
-            normal: {
-              show: true, //显示省份标签
-            },
-            emphasis: {
+            show: true, //显示省份标签
+          },
+          emphasis: {
+            label: {
               show: true, //对应的鼠标悬浮效果
             },
           },
@@ -146,6 +155,72 @@
     window.addEventListener('resize', function () {
       myChart.resize()
     })
+    var fhourTime = null
+    var hourIndex = 0
+    clearInterval(fhourTime);
+    fhourTime = setInterval(function () {
+      myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+      })
+      myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: hourIndex,
+      })
+      myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: hourIndex,
+      })
+      hourIndex++
+      if (hourIndex > dataMap.length) {
+        hourIndex = 0
+      }
+    }, 3000)
+    //鼠标移入停止轮播
+    myChart.on('mousemove', function (e) {
+      clearInterval(fhourTime)
+      myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+      })
+      myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: e.dataIndex,
+      })
+      myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: e.dataIndex,
+      })
+    })
+    //鼠标移出恢复轮播
+    myChart.on('mouseout', function () {
+      clearInterval(fhourTime);
+      fhourTime = setInterval(function () {
+        myChart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0,
+        })
+        myChart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: hourIndex,
+        })
+        myChart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: hourIndex,
+        })
+        hourIndex++
+        if (hourIndex > dataMap.length) {
+          hourIndex = 0
+        }
+      }, 3000)
+    })
+
   }
   echarts1()
 </script>

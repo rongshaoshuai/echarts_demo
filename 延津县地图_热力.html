@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  #container {
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;
+    margin-top: 40px
+  }
+
+  body {
+    background: #060c3c;
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script>
+    $(function () {
+      var myChart = echarts.init(document.getElementById('container'));
+
+      $.get('/json/延津.json', function (geoJson) {
+        echarts.registerMap('延津县', geoJson, {});
+        var dataMap = [
+          { name: '城关镇', value: 178 },
+          { name: '马庄乡', value: 340 },
+          { name: '东屯镇', value: 460 },
+          { name: '丰庄镇', value: 470 },
+          { name: '僧固乡', value: 650 },
+        ]
+
+        //引入散点坐标数据
+
+        var specialMap = []
+        // 对dataMap进行处理，使其可以直接在页面上展示
+        for (var i = 0; i < specialMap.length; i++) {
+          for (var j = 0; j < dataMap.length; j++) {
+            if (specialMap[i] == dataMap[j].name) {
+              dataMap[j].selected = true
+              break
+            }
+          }
+        }
+        var option = {
+          tooltip: {
+            show: true,
+            trigger: 'item',
+            formatter: function (params) { //标签内容
+              // console.log(params)
+              return params.name;
+            },
+          },
+          //左侧小导航图标
+          visualMap: {
+            show: true,
+            left: 50,
+            top: 30,
+            splitList: [
+              { start: 901, label: '耕地' },
+              { start: 801, end: 900, label: '林地' },
+              { start: 701, end: 800, label: '草地' },
+              { start: 601, end: 700, label: '园地' },
+              { start: 501, end: 600, label: '水面' },
+              { start: 401, end: 500, label: '自留地' },
+              { start: 301, end: 400, label: '四荒' },
+              { start: 201, end: 300, label: '生活住宅用地' },
+              { start: 101, end: 200, label: '公益事业用地' },
+              { start: 0, end: 100, label: '工矿用地' },
+            ],
+            textStyle: {
+              color: '#fff',
+            },
+            color: [
+              '#064cc6',
+              '#2db4dc',
+              '#1df980',
+              '#f2c640',
+              '#1ff4d0',
+              '#d257ff',
+              '#d5d015',
+              '#f97071',
+              '#a56cfc',
+              '#d059c2',
+            ],
+          },
+          series: [
+            {
+              name: '延津县',
+              type: 'map',
+              mapType: '延津县',
+              emphasis: {
+                label: {
+                  show: false, //对应的鼠标悬浮效果
+                },
+              },
+              data: dataMap,
+              z: 10,
+              itemStyle: {
+                normal: {
+                  color: '#0edad6',
+                  borderColor: '#0db3f3', //地图边界线的颜色
+                  areaColor: '#10295e', //地图整体区域的颜色
+                  borderWidth: 1,
+                  shadowColor: '#1ba9e4',
+                  shadowBlur: 15,
+                  shadowOffsetX: 0,
+                  shadowOffsetY: 5,
+                },
+                emphasis: {
+                  areaColor: 'transparent', //鼠标滑过的颜色
+                },
+              },
+              label: {
+                normal: {
+                  show: true,
+                  textStyle: {
+                    fontSize: 14,
+                    fontWeight: 'normal',
+                    color: '#0edad6',
+                  },
+                  formatter: function (params) { //标签内容
+                    // console.log(params)
+                    return params.name;
+                  },
+                },
+                emphasis: {
+                  color: '#0edad6',
+                },
+              },
+            },
+          ],
+        }
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+          console.log(params.name)
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

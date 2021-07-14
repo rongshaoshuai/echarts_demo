@@ -10,16 +10,26 @@
   <script src="js/echarts.min.js"></script>
   <script src="json/china.js"></script>
   <style>
+    html,
     body {
       width: 100%;
       height: 100%;
       background-color: #061537;
+      padding: 0;
+      margin: 0;
     }
 
     #main8 {
       width: 100%;
       height: 100%;
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #main8>div:last-child {
+      display: block !important;
     }
   </style>
 </head>
@@ -29,62 +39,86 @@
 </body>
 
 <script type="text/javascript">
-  var allData = {
-    citys: [
-      {
-        name: '延寿',
-        value: [128.331644, 45.451897, 2],
-      },
-      {
-        name: '临江',
-        value: [126.918087, 41.811979, 2],
-      },
-      {
-        name: '嘉兴',
-        value: [120.755486, 30.746129, 4],
-      },
-      {
-        name: '四平',
-        value: [124.350398, 43.16642, 1],
-      },
-      {
-        name: '营口',
-        value: [122.235418, 40.667012, 1],
-      },
-      {
-        name: '密云',
-        value: [116.801346, 40.35874, 1],
-      },
-    ],
-    da: [
-      {
-        name: '浙江',
-        value: [120.152792, 30.267447, -2],
-      }, {
-        name: '河北',
-        value: [114.475704, 38.584854, -19],
-      },
-      {
-        name: '吉林',
-        value: [126.549572, 43.837883, -364],
-        symbolSize: 20,
-      },
-      {
-        name: '甘肃',
-        value: [103.826308, 36.059421, -2],
-      },
-    ]
-  }
+  var index = 0, seriesIndex_ = 0, mTime1, mTime2,
+    allData = {
+      citys: [
+        {
+          name: '延寿',
+          value: [128.331644, 45.451897, 2],
+        },
+        {
+          name: '临江',
+          value: [126.918087, 41.811979, 2],
+        },
+        {
+          name: '嘉兴',
+          value: [120.755486, 30.746129, 4],
+        },
+        {
+          name: '四平',
+          value: [124.350398, 43.16642, 1],
+        },
+        {
+          name: '营口',
+          value: [122.235418, 40.667012, 1],
+        },
+        {
+          name: '密云',
+          value: [116.801346, 40.35874, 1],
+        },
+      ],
+      da: [
+        {
+          name: '浙江',
+          value: [120.152792, 30.267447, -2],
+        }, {
+          name: '河北',
+          value: [114.475704, 38.584854, -19],
+        },
+        {
+          name: '吉林',
+          value: [126.549572, 43.837883, -364],
+          symbolSize: 20,
+        },
+        {
+          name: '甘肃',
+          value: [103.826308, 36.059421, -2],
+        },
+      ]
+    }
 
-  option8 = {
+  var option8 = {
+    title: {
+      text: '中国地图散点图',
+      textStyle: {
+        color: '#0177ff',
+        fontWeight: 'normal',
+        fontSize: 16
+      },
+      left: 'center',
+      top: 20
+    },
+    tooltip: {
+      show: true,
+      //不写formatter时,显示默认提示框
+      // formatter: '{a}{b}{c}',//使用模板变量
+      // formatter: function (params) {//自定义的提示框内容
+      //   var html_ = ''
+      //   html += '<div>提示内容</div>'
+      //   return html_
+      // }
+    },
     geo: {
       map: 'china',
       label: {
-        emphasis: {
-          show: false,
-        },
+        show: false,
       },
-      roam: true,//是否开启鼠标缩放和平移漫游
+      emphasis: {
+        label: {
+          show: false,
+        }
+      },
+      roam: false,//是否开启鼠标缩放和平移漫游
       itemStyle: {
         normal: {
           areaColor: 'rgba(7,21,57,0.5)',
@@ -95,15 +129,20 @@
         },
       },
     },
-    series: [
+    series: [//2个系列的散点
       {
-        name: '散点',
+        name: '散点系列名称1',
         type: 'effectScatter',
         coordinateSystem: 'geo',
         zlevel: 2,
         rippleEffect: {// 涟漪特效相关配置
           brushType: 'stroke',//可选 'stroke' 和 'fill'。
           scale: 2
+        },
+        label: {
+          show: true,
+          position: 'left',
+          formatter: '{b}',
         },
         emphasis: {
           label: {//散点文字提示
@@ -121,13 +160,18 @@
         },
         data: allData.citys,
       }, {
-        name: '散点',
+        name: '散点系列名称2',
         type: 'effectScatter',
         coordinateSystem: 'geo',
         zlevel: 2,
         rippleEffect: {// 涟漪特效相关配置
           brushType: 'stroke',//可选 'stroke' 和 'fill'。
           scale: 2
+        },
+        label: {
+          show: true,
+          position: 'left',
+          formatter: '{b}',
         },
         emphasis: {
           label: {//散点文字提示
@@ -147,8 +191,67 @@
       }
     ],
   }
+
+
   var myChart8 = echarts.init(document.getElementById('main8'));
+  myChart8.clear()
   myChart8.setOption(option8);
+
+  index = 0; //播放所在下标
+  seriesIndex_ = 0
+  ff1()
+
+  function ff1() {
+    seriesIndex_ = 0
+    mTime1 = setInterval(function () {
+      myChart8.dispatchAction({
+        type: 'showTip',
+        seriesIndex: seriesIndex_,
+        dataIndex: index
+      });
+      index++;
+      if (index >= option8.series[0].data.length) {
+        index = 0;
+        clearInterval(mTime1)
+        ff2()
+      }
+    }, 2000);
+  }
+
+  function ff2() {
+    seriesIndex_ = 1
+    mTime2 = setInterval(function () {
+      myChart8.dispatchAction({
+        type: 'showTip',
+        seriesIndex: seriesIndex_,
+        dataIndex: index
+      });
+      index++;
+      if (index >= option8.series[1].data.length) {
+        index = 0;
+        ff1()
+      }
+    }, 2000);
+  }
+  //鼠标移入停止轮播
+  myChart8.on('mousemove', function (e) {
+    clearInterval(mTime1)
+    clearInterval(mTime2)
+
+    myChart8.dispatchAction({
+      type: 'showTip',
+      seriesIndex: e.componentIndex,
+      dataIndex: e.dataIndex,
+    })
+  })
+  //鼠标移出恢复轮播
+  myChart8.on('mouseout', function () {
+    if (seriesIndex_ == 1) {
+      ff2()
+      return
+    }
+    ff1()
+  })
 </script>
 
 </html>
