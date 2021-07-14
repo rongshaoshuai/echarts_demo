@@ -1505,6 +1505,8 @@
       ],
     }
 
+
+
     myChart.clear()
     myChart.setOption(option)
     window.addEventListener('resize', function () {
@@ -1524,6 +1526,7 @@
     myChart.on('mouseout', () => {
       pieActive(myChart, option)
     })
+
   }
 
   function echarts12(piedata) {
@@ -1604,6 +1607,87 @@
 
   }
 
+<<<<<<< HEAD
+  function echarts12(piedata) {
+    var myChart = echarts.init(document.getElementById('echarts12'))
+    var option = {
+      title: {
+        text: '',
+        textStyle: {
+          color: '#fff',
+          fontWeight: 'normal',
+          fontSize: 14,
+        },
+        left: 'center',
+        top: 'middle',
+      },
+      color: ['#00f0ff', '#0090ff', '#1b51ff', '#2a00ff', '#ffd074'],
+      tooltip: {
+        trigger: 'item',
+        // 饼图提示框写在series.label里面
+        formatter: function (params) {
+          return ''
+        },
+        transitionDuration: 0,
+      },
+      legend: {
+        type: 'scroll',
+        orient: 'horizontal',
+        left: 10,
+        textStyle: {
+          color: '#fff',
+        },
+      },
+      series: [
+        {
+          name: '种植面积',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center',
+            // 饼图的提示框
+            formatter: '{b}\n{a}:{c}\n占比:{d}%',
+            fontSize: 12,
+          },
+          animationDelay: 1000,
+          animationDuration: 3000,
+          animationEasing: 'cubicInOut',
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '16',
+              fontWeight: 'bold',
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          // 饼图的数据格式
+          data: piedata,
+        },
+      ],
+    }
+
+    if (piedata.length == 0) {
+      option.title.text = '暂无数据'
+      option.legend.show = false
+    } else {
+      option.title.text = ''
+      option.legend.show = true
+    }
+
+    myChart.clear()
+    myChart.setOption(option)
+    window.addEventListener('resize', function () {
+      myChart.resize()
+    })
+
+  }
+
+=======
+>>>>>>> 1a0daab58d630a4e33857296ff8fe9002632caef
 
   function pieActive(myChart, option) {
 	  clearInterval(pieTime)
